@@ -38,9 +38,9 @@ export class SingleJobComponent implements OnInit {
         });
     }
 
-    apply(id: number) {
+    apply(id: number): void {
         const applyBox = this._dialog.open(ApplyComponent);
-        applyBox.afterClosed().subscribe((result: boolean) => {
+        applyBox.afterClosed().subscribe(() => {
             this._userService.applyToJob(id).subscribe(
                 (res) => {
                     this._bar.open(
@@ -55,7 +55,7 @@ export class SingleJobComponent implements OnInit {
                     );
                     this.job.no_applicants += 1;
                 },
-                (error) => {
+                () => {
                     this._bar.open(
                         'You have already applied to this job! ',
                         '',

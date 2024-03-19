@@ -68,9 +68,12 @@
         "autoprefixer": "10.4.1",
         "chroma-js": "2.1.2",
         "eslint": "8.6.0",
+        "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-import": "2.25.3",
         "eslint-plugin-jsdoc": "37.5.0",
         "eslint-plugin-prefer-arrow": "1.2.3",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-unused-imports": "^3.1.0",
         "jasmine-core": "3.10.1",
         "karma": "6.3.9",
         "karma-chrome-launcher": "3.1.0",
@@ -79,10 +82,8 @@
         "karma-jasmine-html-reporter": "1.7.0",
         "lodash": "4.17.21",
         "postcss": "8.4.5",
-        "tailwindcss": "3.0.8",
-        "typescript": "4.5.4",
         "prettier": "^2.3.2",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-prettier": "^4.0.0"
+        "tailwindcss": "3.0.8",
+        "typescript": "4.5.4"
     }
 }

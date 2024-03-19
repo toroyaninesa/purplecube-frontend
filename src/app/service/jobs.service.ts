@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { ICategory, IJob } from '../models/job.model';
