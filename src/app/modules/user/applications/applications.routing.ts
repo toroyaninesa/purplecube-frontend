@@ -1,10 +1,10 @@
-import {Route} from '@angular/router';
-import {UserApplicationsComponent} from "./user-applications.component";
+import { Route } from '@angular/router';
+import { UserApplicationsComponent } from './user-applications.component';
 
 export const applicationsRoutes: Route[] = [
     {
         path: '',
-        pathMatch : 'full',
-        component: UserApplicationsComponent
+        pathMatch: 'full',
+        component: UserApplicationsComponent,
     },
 ];

@@ -8,42 +8,41 @@ import { FuseSplashScreenModule } from '@fuse/services/splash-screen/splash-scre
 import { FuseUtilsModule } from '@fuse/services/utils/utils.module';
 
 @NgModule({
-    imports  : [
+    imports: [
         FuseConfirmationModule,
         FuseLoadingModule,
         FuseMediaWatcherModule,
         FuseSplashScreenModule,
-        FuseUtilsModule
+        FuseUtilsModule,
     ],
     providers: [
         {
             // Disable 'theme' sanity check
-            provide : MATERIAL_SANITY_CHECKS,
+            provide: MATERIAL_SANITY_CHECKS,
             useValue: {
                 doctype: true,
-                theme  : false,
-                version: true
-            }
+                theme: false,
+                version: true,
+            },
         },
         {
             // Use the 'fill' appearance on Angular Material form fields by default
-            provide : MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
             useValue: {
-                appearance: 'fill'
-            }
-        }
-    ]
+                appearance: 'fill',
+            },
+        },
+    ],
 })
-export class FuseModule
-{
+export class FuseModule {
     /**
      * Constructor
      */
-    constructor(@Optional() @SkipSelf() parentModule?: FuseModule)
-    {
-        if ( parentModule )
-        {
-            throw new Error('FuseModule has already been loaded. Import this module in the AppModule only!');
+    constructor(@Optional() @SkipSelf() parentModule?: FuseModule) {
+        if (parentModule) {
+            throw new Error(
+                'FuseModule has already been loaded. Import this module in the AppModule only!'
+            );
         }
     }
 }

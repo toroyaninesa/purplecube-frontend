@@ -1,19 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
     @Input() title: string;
 
-    constructor(private _router: Router) {
-    }
+    constructor(private _router: Router) {}
 
-    ngOnInit(): void {
-    }
-
+    ngOnInit(): void {}
 }

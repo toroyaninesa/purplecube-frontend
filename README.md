@@ -1,6 +1,7 @@
 # PurpleCube
 
 # Run npm install to fetch the dependencies
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
 
 ## Development server

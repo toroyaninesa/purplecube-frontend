@@ -18,10 +18,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { MaterialLayoutComponent } from 'app/layout/layouts/horizontal/material/material.component';
 
 @NgModule({
-    declarations: [
-        MaterialLayoutComponent
-    ],
-    imports     : [
+    declarations: [MaterialLayoutComponent],
+    imports: [
         HttpClientModule,
         RouterModule,
         MatButtonModule,
@@ -37,12 +35,8 @@ import { MaterialLayoutComponent } from 'app/layout/layouts/horizontal/material/
         SearchModule,
         ShortcutsModule,
         UserModule,
-        SharedModule
+        SharedModule,
     ],
-    exports     : [
-        MaterialLayoutComponent
-    ]
+    exports: [MaterialLayoutComponent],
 })
-export class MaterialLayoutModule
-{
-}
+export class MaterialLayoutModule {}

@@ -7,18 +7,17 @@ import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 
 @Component({
-    selector     : 'auth-reset-password',
-    templateUrl  : './reset-password.component.html',
+    selector: 'auth-reset-password',
+    templateUrl: './reset-password.component.html',
     encapsulation: ViewEncapsulation.None,
-    animations   : fuseAnimations
+    animations: fuseAnimations,
 })
-export class AuthResetPasswordComponent implements OnInit
-{
+export class AuthResetPasswordComponent implements OnInit {
     @ViewChild('resetPasswordNgForm') resetPasswordNgForm: NgForm;
 
     alert: { type: FuseAlertType; message: string } = {
-        type   : 'success',
-        message: ''
+        type: 'success',
+        message: '',
     };
     resetPasswordForm: FormGroup;
     showAlert: boolean = false;
@@ -29,9 +28,7 @@ export class AuthResetPasswordComponent implements OnInit
     constructor(
         private _authService: AuthService,
         private _formBuilder: FormBuilder
-    )
-    {
-    }
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -40,15 +37,18 @@ export class AuthResetPasswordComponent implements OnInit
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    ngOnInit(): void {
         // Create the form
-        this.resetPasswordForm = this._formBuilder.group({
-                password       : ['', Validators.required],
-                passwordConfirm: ['', Validators.required]
+        this.resetPasswordForm = this._formBuilder.group(
+            {
+                password: ['', Validators.required],
+                passwordConfirm: ['', Validators.required],
             },
             {
-                validators: FuseValidators.mustMatch('password', 'passwordConfirm')
+                validators: FuseValidators.mustMatch(
+                    'password',
+                    'passwordConfirm'
+                ),
             }
         );
     }
@@ -60,11 +60,9 @@ export class AuthResetPasswordComponent implements OnInit
     /**
      * Reset password
      */
-    resetPassword(): void
-    {
+    resetPassword(): void {
         // Return if the form is invalid
-        if ( this.resetPasswordForm.invalid )
-        {
+        if (this.resetPasswordForm.invalid) {
             return;
         }
 
@@ -75,10 +73,10 @@ export class AuthResetPasswordComponent implements OnInit
         this.showAlert = false;
 
         // Send the request to the server
-        this._authService.resetPassword(this.resetPasswordForm.get('password').value)
+        this._authService
+            .resetPassword(this.resetPasswordForm.get('password').value)
             .pipe(
                 finalize(() => {
-
                     // Re-enable the form
                     this.resetPasswordForm.enable();
 
@@ -91,19 +89,17 @@ export class AuthResetPasswordComponent implements OnInit
             )
             .subscribe(
                 (response) => {
-
                     // Set the alert
                     this.alert = {
-                        type   : 'success',
-                        message: 'Your password has been reset.'
+                        type: 'success',
+                        message: 'Your password has been reset.',
                     };
                 },
                 (response) => {
-
                     // Set the alert
                     this.alert = {
-                        type   : 'error',
-                        message: 'Something went wrong, please try again.'
+                        type: 'error',
+                        message: 'Something went wrong, please try again.',
                     };
                 }
             );

@@ -1,46 +1,127 @@
 <div class="flex flex-col p-6 w-full gap-5">
     <ng-container>
-        <mat-stepper [linear]="true" #stepper [selectedIndex]="app.status === EStatus.SCREENING ? 1 : app.status === EStatus.DECISION ? 2 : 0" >
-            <mat-step [editable]="false" [completed]="app.status === EStatus.SCREENING || app.status === EStatus.DECISION" >
+        <mat-stepper
+            [linear]="true"
+            #stepper
+            [selectedIndex]="
+                app.status === EStatus.SCREENING
+                    ? 1
+                    : app.status === EStatus.DECISION
+                    ? 2
+                    : 0
+            "
+        >
+            <mat-step
+                [editable]="false"
+                [completed]="
+                    app.status === EStatus.SCREENING ||
+                    app.status === EStatus.DECISION
+                "
+            >
                 <ng-template matStepLabel>Processed</ng-template>
                 <div class="flex flex-col gap-7 w-full">
-                    <img class="company-img" src="{{app.job.company.image_url}}">
-                    <p class="title">{{app.user.name + " " + app.user.surname}}</p>
-                    <p class="font-medium">Hi! Please carefully take a look at the applicant profile and choose - whether to invite the applicant to an interview or not.Choose the corresponding action below.</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="title">
+                        {{ app.user.name + " " + app.user.surname }}
+                    </p>
+                    <p class="font-medium">
+                        Hi! Please carefully take a look at the applicant
+                        profile and choose - whether to invite the applicant to
+                        an interview or not.Choose the corresponding action
+                        below.
+                    </p>
                     <ng-container>
                         <mat-stepper orientation="vertical" #stepper>
-                            <mat-step *ngFor="let experience of app.user.experience" >
+                            <mat-step
+                                *ngFor="let experience of app.user.experience"
+                            >
                                 <div class="flex flex-col gap-3">
-                                    <ng-template matStepLabel><span class="text-2xl">{{experience.positionTitle}}</span></ng-template>
-                                    <p><span class="label">Company: </span> <span [style.color]="'var(--primary)'" class="font-medium">{{experience.companyName}}</span></p>
-                                    <p style="white-space: pre-line"><span class="label">Description:</span> {{experience.description}}</p>
-                                    <p><span class="label">Start Date:</span> {{experience.startDate | date}} </p>
-                                    <p><span class="label">End Date:</span> {{experience.endDate | date}} </p>
+                                    <ng-template matStepLabel
+                                        ><span class="text-2xl">{{
+                                            experience.positionTitle
+                                        }}</span></ng-template
+                                    >
+                                    <p>
+                                        <span class="label">Company: </span>
+                                        <span
+                                            [style.color]="'var(--primary)'"
+                                            class="font-medium"
+                                            >{{ experience.companyName }}</span
+                                        >
+                                    </p>
+                                    <p style="white-space: pre-line">
+                                        <span class="label">Description:</span>
+                                        {{ experience.description }}
+                                    </p>
+                                    <p>
+                                        <span class="label">Start Date:</span>
+                                        {{ experience.startDate | date }}
+                                    </p>
+                                    <p>
+                                        <span class="label">End Date:</span>
+                                        {{ experience.endDate | date }}
+                                    </p>
                                 </div>
                             </mat-step>
                         </mat-stepper>
                     </ng-container>
                     <div class="flex gap-5 w-full">
-                        <button mat-button class="primary w-full">Invite to screening</button>
-                        <button mat-button class="primary-inverse w-full">Reject</button>
+                        <button mat-button class="primary w-full">
+                            Invite to screening
+                        </button>
+                        <button mat-button class="primary-inverse w-full">
+                            Reject
+                        </button>
                     </div>
                 </div>
             </mat-step>
-            <mat-step [editable]="false" [completed]="app.status === EStatus.DECISION">
+            <mat-step
+                [editable]="false"
+                [completed]="app.status === EStatus.DECISION"
+            >
                 <ng-template matStepLabel>Screening interview</ng-template>
                 <div class="flex flex-col gap-10">
-                    <p class="title">{{app.job.company.name}}</p>
-                    <img class="company-img" src="{{app.job.company.image_url}}">
-                    <p class="desc">Dear applicant, we are pleased to invite you to the interview for the position <strong>{{app.job.title}}</strong>. Our hiring manager will reach you out for the details. Afterwards, the <strong>Hiring decision</strong> staged will be unlocked.</p>
+                    <p class="title">{{ app.job.company.name }}</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="desc">
+                        Dear applicant, we are pleased to invite you to the
+                        interview for the position
+                        <strong>{{ app.job.title }}</strong
+                        >. Our hiring manager will reach you out for the
+                        details. Afterwards, the
+                        <strong>Hiring decision</strong> staged will be
+                        unlocked.
+                    </p>
                 </div>
             </mat-step>
             <mat-step>
                 <ng-template matStepLabel>Hiring Decision</ng-template>
                 <div class="flex flex-col gap-10">
-                    <p class="title">{{app.job.company.name}}</p>
-                    <img class="company-img" src="{{app.job.company.image_url}}">
-                    <p class="desc" *ngIf="app.hired; else rejection">Dear applicant, <strong>Congratulations!</strong> We are pleased hire you for the position <strong>{{app.job.title}}</strong>. Our hiring manager will reach you out for the details.</p>
-                    <ng-template #rejection><p class="desc">Dear applicant, unfortunately, at the moment we had another candidate who was a better fit. Good luck, and do not hesitate to apply again.</p></ng-template>
+                    <p class="title">{{ app.job.company.name }}</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="desc" *ngIf="app.hired; else rejection">
+                        Dear applicant, <strong>Congratulations!</strong> We are
+                        pleased hire you for the position
+                        <strong>{{ app.job.title }}</strong
+                        >. Our hiring manager will reach you out for the
+                        details.
+                    </p>
+                    <ng-template #rejection
+                        ><p class="desc">
+                            Dear applicant, unfortunately, at the moment we had
+                            another candidate who was a better fit. Good luck,
+                            and do not hesitate to apply again.
+                        </p></ng-template
+                    >
                 </div>
             </mat-step>
         </mat-stepper>

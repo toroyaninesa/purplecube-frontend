@@ -18,10 +18,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { CenteredLayoutComponent } from 'app/layout/layouts/horizontal/centered/centered.component';
 
 @NgModule({
-    declarations: [
-        CenteredLayoutComponent
-    ],
-    imports     : [
+    declarations: [CenteredLayoutComponent],
+    imports: [
         HttpClientModule,
         RouterModule,
         MatButtonModule,
@@ -37,12 +35,8 @@ import { CenteredLayoutComponent } from 'app/layout/layouts/horizontal/centered/
         SearchModule,
         ShortcutsModule,
         UserModule,
-        SharedModule
+        SharedModule,
     ],
-    exports     : [
-        CenteredLayoutComponent
-    ]
+    exports: [CenteredLayoutComponent],
 })
-export class CenteredLayoutModule
-{
-}
+export class CenteredLayoutModule {}

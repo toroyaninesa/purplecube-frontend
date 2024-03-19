@@ -1,79 +1,122 @@
 <div class="flex flex-col p-6 w-full gap-5">
     <div class="flex flex-col w-full items-center">
-        <img id='people' src="assets/images/ui/File-searching-cuate.png">
+        <img id="people" src="assets/images/ui/File-searching-cuate.png" />
     </div>
     <div class="flex items-center justify-between search-box gap-10">
         <div class="flex items-center gap-3 w-full">
             <div class="flex search-input items-center w-full">
                 <mat-icon>search</mat-icon>
-                <input type="text" placeholder="Job title or a keyword" [(ngModel)]="title" class="w-full" (keydown.enter)="search()">
+                <input
+                    type="text"
+                    placeholder="Job title or a keyword"
+                    [(ngModel)]="title"
+                    class="w-full"
+                    (keydown.enter)="search()"
+                />
             </div>
         </div>
-        <button mat-button color="primary" class="primary" (click)="search()">Search</button>
+        <button mat-button color="primary" class="primary" (click)="search()">
+            Search
+        </button>
     </div>
     <div class="flex job-area gap-5">
         <div class="flex flex-col gap-2 filters max-w-300">
-            <button mat-button class="primary" (click)="search()">Search</button>
+            <button mat-button class="primary" (click)="search()">
+                Search
+            </button>
             <button mat-button class="inverted" (click)="reset()">Reset</button>
             <mat-accordion>
                 <mat-expansion-panel expanded="true">
                     <mat-expansion-panel-header>
-                        <mat-panel-title>
-                           Type of Employment
-                        </mat-panel-title>
+                        <mat-panel-title> Type of Employment </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="flex flex-col">
-                        <mat-checkbox [value]="employment.FULL_TIME" (change)="employmentChange($event)">Full-time</mat-checkbox>
-                        <mat-checkbox [value]="employment.PART_TIME" (change)="employmentChange($event)">Part-time</mat-checkbox>
-                        <mat-checkbox [value]="employment.CONTRACT" (change)="employmentChange($event)">Contract</mat-checkbox>
-                        <mat-checkbox [value]="employment.SHIFTS" (change)="employmentChange($event)">Shifts</mat-checkbox>
+                        <mat-checkbox
+                            [value]="employment.FULL_TIME"
+                            (change)="employmentChange($event)"
+                            >Full-time</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="employment.PART_TIME"
+                            (change)="employmentChange($event)"
+                            >Part-time</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="employment.CONTRACT"
+                            (change)="employmentChange($event)"
+                            >Contract</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="employment.SHIFTS"
+                            (change)="employmentChange($event)"
+                            >Shifts</mat-checkbox
+                        >
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
             <mat-accordion>
                 <mat-expansion-panel expanded="true">
                     <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            Job Level
-                        </mat-panel-title>
+                        <mat-panel-title> Job Level </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="flex flex-col">
-                        <mat-checkbox [value]="level.ENTRY" (change)="levelChange($event)">Entry Level</mat-checkbox>
-                        <mat-checkbox [value]="level.JUNIOR" (change)="levelChange($event)">Junior</mat-checkbox>
-                        <mat-checkbox [value]="level.MIDDLE" (change)="levelChange($event)">Middle</mat-checkbox>
-                        <mat-checkbox [value]="level.SENIOR" (change)="levelChange($event)">Senior</mat-checkbox>
+                        <mat-checkbox
+                            [value]="level.ENTRY"
+                            (change)="levelChange($event)"
+                            >Entry Level</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="level.JUNIOR"
+                            (change)="levelChange($event)"
+                            >Junior</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="level.MIDDLE"
+                            (change)="levelChange($event)"
+                            >Middle</mat-checkbox
+                        >
+                        <mat-checkbox
+                            [value]="level.SENIOR"
+                            (change)="levelChange($event)"
+                            >Senior</mat-checkbox
+                        >
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
             <mat-accordion>
                 <mat-expansion-panel expanded="true">
                     <mat-expansion-panel-header>
-                        <mat-panel-title>
-                           Category
-                        </mat-panel-title>
+                        <mat-panel-title> Category </mat-panel-title>
                     </mat-expansion-panel-header>
                     <div class="flex flex-col">
-                        <mat-checkbox  *ngFor="let cat of categories" [value]="cat.title" (change)="categoryChange($event)">{{cat.title}}</mat-checkbox>
+                        <mat-checkbox
+                            *ngFor="let cat of categories"
+                            [value]="cat.title"
+                            (change)="categoryChange($event)"
+                            >{{ cat.title }}</mat-checkbox
+                        >
                     </div>
                 </mat-expansion-panel>
             </mat-accordion>
         </div>
         <mat-divider [vertical]="true"></mat-divider>
         <div class="flex flex-col w-full gap-5">
-           <div class="flex items-center justify-between result">
-               <div>
-                   <p class="font-medium">All Jobs</p>
-                   <p>Showing {{jobs.length}} results out of {{count}}</p>
-               </div>
-               <div class="settings flex items-center gap-3">
-                   <p>Sort by: <span class="font-medium">Most Relevant</span></p>
-                   <mat-divider [vertical]="true"></mat-divider>
-                   <div>
-                       <mat-icon>view_list</mat-icon>
-                       <mat-icon>view_module</mat-icon>
-                   </div>
-               </div>
-           </div>
+            <div class="flex items-center justify-between result">
+                <div>
+                    <p class="font-medium">All Jobs</p>
+                    <p>Showing {{ jobs.length }} results out of {{ count }}</p>
+                </div>
+                <div class="settings flex items-center gap-3">
+                    <p>
+                        Sort by: <span class="font-medium">Most Relevant</span>
+                    </p>
+                    <mat-divider [vertical]="true"></mat-divider>
+                    <div>
+                        <mat-icon>view_list</mat-icon>
+                        <mat-icon>view_module</mat-icon>
+                    </div>
+                </div>
+            </div>
 
             <app-job-posting
                 *ngFor="let job of jobs"
@@ -82,12 +125,13 @@
                 [showApply]="user.role === 'USER'"
                 [showSave]="user.role === 'USER'"
             ></app-job-posting>
-            <mat-paginator [length]="count"
-                           [pageSize]="15"
-                           (page)="handlePageEvent($event)"
-                           aria-label="Select page">
+            <mat-paginator
+                [length]="count"
+                [pageSize]="15"
+                (page)="handlePageEvent($event)"
+                aria-label="Select page"
+            >
             </mat-paginator>
         </div>
-
     </div>
 </div>

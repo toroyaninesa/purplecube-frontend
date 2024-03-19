@@ -2,16 +2,13 @@ import { Injectable } from '@angular/core';
 import { IsActiveMatchOptions } from '@angular/router';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-export class FuseUtilsService
-{
+export class FuseUtilsService {
     /**
      * Constructor
      */
-    constructor()
-    {
-    }
+    constructor() {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -20,26 +17,24 @@ export class FuseUtilsService
     /**
      * Get the equivalent "IsActiveMatchOptions" options for "exact = true".
      */
-    get exactMatchOptions(): IsActiveMatchOptions
-    {
+    get exactMatchOptions(): IsActiveMatchOptions {
         return {
-            paths       : 'exact',
-            fragment    : 'ignored',
+            paths: 'exact',
+            fragment: 'ignored',
             matrixParams: 'ignored',
-            queryParams : 'exact'
+            queryParams: 'exact',
         };
     }
 
     /**
      * Get the equivalent "IsActiveMatchOptions" options for "exact = false".
      */
-    get subsetMatchOptions(): IsActiveMatchOptions
-    {
+    get subsetMatchOptions(): IsActiveMatchOptions {
         return {
-            paths       : 'subset',
-            fragment    : 'ignored',
+            paths: 'subset',
+            fragment: 'ignored',
             matrixParams: 'ignored',
-            queryParams : 'subset'
+            queryParams: 'subset',
         };
     }
 
@@ -52,13 +47,12 @@ export class FuseUtilsService
      *
      * @param length
      */
-    randomId(length: number = 10): string
-    {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    randomId(length: number = 10): string {
+        const chars =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let name = '';
 
-        for ( let i = 0; i < 10; i++ )
-        {
+        for (let i = 0; i < 10; i++) {
             name += chars.charAt(Math.floor(Math.random() * chars.length));
         }
 

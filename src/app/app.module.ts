@@ -5,29 +5,22 @@ import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
 import { MarkdownModule } from 'ngx-markdown';
 import { FuseModule } from '@fuse';
 import { FuseConfigModule } from '@fuse/services/config';
-import { FuseMockApiModule } from '@fuse/lib/mock-api';
 import { CoreModule } from 'app/core/core.module';
 import { appConfig } from 'app/core/config/app.config';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
-import { MatSnackBarModule} from "@angular/material/snack-bar";
-import {MatButtonModule} from "@angular/material/button";
-import { SavedJobsComponent } from './modules/user/saved-jobs/saved-jobs.component';
-import {MatDividerModule} from "@angular/material/divider";
-import {JobsModule} from "./modules/user/jobs/jobs.module";
-import { SingleJobComponent } from './modules/user/jobs/single-job/single-job.component';
-import { LandingJobComponent } from './modules/user/jobs/landing-job/landing-job.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 const routerConfig: ExtraOptions = {
-    preloadingStrategy       : PreloadAllModules,
-    scrollPositionRestoration: 'enabled'
+    preloadingStrategy: PreloadAllModules,
+    scrollPositionRestoration: 'enabled',
 };
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -49,10 +42,6 @@ const routerConfig: ExtraOptions = {
         MatSnackBarModule,
         MatDividerModule,
     ],
-    bootstrap: [
-        AppComponent
-    ]
+    bootstrap: [AppComponent],
 })
-export class AppModule
-{
-}
+export class AppModule {}

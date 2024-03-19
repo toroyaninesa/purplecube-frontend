@@ -5,16 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
  */
 @Pipe({
     name: 'fuseFindByKey',
-    pure: false
+    pure: false,
 })
-export class FuseFindByKeyPipe implements PipeTransform
-{
+export class FuseFindByKeyPipe implements PipeTransform {
     /**
      * Constructor
      */
-    constructor()
-    {
-    }
+    constructor() {}
 
     /**
      * Transform
@@ -23,15 +20,15 @@ export class FuseFindByKeyPipe implements PipeTransform
      * @param key Key of the object property to look for
      * @param source Array of objects to find from
      */
-    transform(value: string | string[], key: string, source: any[]): any
-    {
+    transform(value: string | string[], key: string, source: any[]): any {
         // If the given value is an array of strings...
-        if ( Array.isArray(value) )
-        {
-            return value.map(item => source.find(sourceItem => sourceItem[key] === item));
+        if (Array.isArray(value)) {
+            return value.map((item) =>
+                source.find((sourceItem) => sourceItem[key] === item)
+            );
         }
 
         // If the value is a string...
-        return source.find(sourceItem => sourceItem[key] === value);
+        return source.find((sourceItem) => sourceItem[key] === value);
     }
 }

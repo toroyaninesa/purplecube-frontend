@@ -2,22 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
 import { User } from 'app/core/user/user.types';
-import {Location} from "@angular/common";
-import {environment} from "../../../environments/environment";
-import {IJob} from "../../models/job.model";
+import { Location } from '@angular/common';
+import { environment } from '../../../environments/environment';
+import { IJob } from '../../models/job.model';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-export class UserService
-{
+export class UserService {
     private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
     /**
      * Constructor
      */
-    constructor(private _httpClient: HttpClient)
-    {
-    }
+    constructor(private _httpClient: HttpClient) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -28,14 +25,12 @@ export class UserService
      *
      * @param value
      */
-    set user(value: User)
-    {
+    set user(value: User) {
         // Store the value
         this._user.next(value);
     }
 
-    get user$(): Observable<User>
-    {
+    get user$(): Observable<User> {
         return this._user.asObservable();
     }
 
@@ -46,8 +41,7 @@ export class UserService
     /**
      * Get the current logged in user data
      */
-    get(): Observable<User>
-    {
+    get(): Observable<User> {
         return this._httpClient.get<User>('api/common/user').pipe(
             tap((user) => {
                 this._user.next(user);
@@ -60,9 +54,8 @@ export class UserService
      *
      * @param user
      */
-    update(user: User): Observable<any>
-    {
-        return this._httpClient.patch<User>('api/common/user', {user}).pipe(
+    update(user: User): Observable<any> {
+        return this._httpClient.patch<User>('api/common/user', { user }).pipe(
             map((response) => {
                 this._user.next(response);
             })
@@ -71,15 +64,17 @@ export class UserService
 
     getSavedJobs() {
         const url = Location.joinWithSlash(
-            environment.baseURL || '', '/user/saved'
+            environment.baseURL || '',
+            '/user/saved'
         );
         return this._httpClient.get<IJob[]>(url);
     }
 
     applyToJob(jobId) {
         const url = Location.joinWithSlash(
-            environment.baseURL || '', `/jobs/apply/${jobId}`
+            environment.baseURL || '',
+            `/jobs/apply/${jobId}`
         );
-        return this._httpClient.post(url,null);
+        return this._httpClient.post(url, null);
     }
 }

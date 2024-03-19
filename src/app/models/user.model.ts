@@ -1,5 +1,5 @@
 export enum IUserRole {
-    ADMIN = "ADMIN",
-    COMPANY = "COMPANY",
-    USER = "USER",
+    ADMIN = 'ADMIN',
+    COMPANY = 'COMPANY',
+    USER = 'USER',
 }

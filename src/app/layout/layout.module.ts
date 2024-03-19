@@ -24,19 +24,8 @@ const layoutModules = [
 ];
 
 @NgModule({
-    declarations: [
-        LayoutComponent
-    ],
-    imports     : [
-        SharedModule,
-        SettingsModule,
-        ...layoutModules
-    ],
-    exports     : [
-        LayoutComponent,
-        ...layoutModules
-    ]
+    declarations: [LayoutComponent],
+    imports: [SharedModule, SettingsModule, ...layoutModules],
+    exports: [LayoutComponent, ...layoutModules],
 })
-export class LayoutModule
-{
-}
+export class LayoutModule {}

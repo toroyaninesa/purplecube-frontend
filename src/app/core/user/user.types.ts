@@ -1,8 +1,7 @@
-import {IJob} from "../../models/job.model";
-import {IUserRole} from "../../models/user.model";
+import { IJob } from '../../models/job.model';
+import { IUserRole } from '../../models/user.model';
 
-export interface User
-{
+export interface User {
     id: string;
     name: string;
     surname: string;

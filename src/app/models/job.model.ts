@@ -1,4 +1,4 @@
-import {ICompany} from "./company.model";
+import { ICompany } from './company.model';
 
 export interface IJob {
     id: number;
@@ -9,22 +9,21 @@ export interface IJob {
     company: ICompany;
     employment: EmploymentTypeEnum;
     level: EmploymentLevelEnum;
-    categories: {id: number, title: string}[];
+    categories: { id: number; title: string }[];
 }
 
 export enum EmploymentTypeEnum {
-    FULL_TIME = "F",
-    PART_TIME = "P",
-    CONTRACT = "C",
-    SHIFTS = "S"
-
+    FULL_TIME = 'F',
+    PART_TIME = 'P',
+    CONTRACT = 'C',
+    SHIFTS = 'S',
 }
 
 export enum EmploymentLevelEnum {
-    ENTRY = "E",
-    JUNIOR = "J",
-    MIDDLE = "M",
-    SENIOR = "S",
+    ENTRY = 'E',
+    JUNIOR = 'J',
+    MIDDLE = 'M',
+    SENIOR = 'S',
 }
 
 export interface ICategory {

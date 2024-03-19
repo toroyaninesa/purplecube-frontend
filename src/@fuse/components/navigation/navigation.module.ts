@@ -19,8 +19,8 @@ import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/nav
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
     declarations: [
@@ -35,7 +35,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         FuseVerticalNavigationDividerItemComponent,
         FuseVerticalNavigationGroupItemComponent,
         FuseVerticalNavigationSpacerItemComponent,
-        FuseVerticalNavigationComponent
+        FuseVerticalNavigationComponent,
     ],
     imports: [
         CommonModule,
@@ -47,13 +47,11 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         MatTooltipModule,
         FuseScrollbarModule,
         MatExpansionModule,
-        MatCheckboxModule
+        MatCheckboxModule,
     ],
-    exports     : [
+    exports: [
         FuseHorizontalNavigationComponent,
-        FuseVerticalNavigationComponent
-    ]
+        FuseVerticalNavigationComponent,
+    ],
 })
-export class FuseNavigationModule
-{
-}
+export class FuseNavigationModule {}

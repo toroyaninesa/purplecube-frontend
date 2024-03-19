@@ -1,18 +1,17 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {OpenPositionsComponent} from './open-positions.component';
-import {Route, RouterModule} from "@angular/router";
-import {MatDividerModule} from "@angular/material/divider";
-import {SharedModule} from "../../../shared/shared.module";
-import {ApplicantsComponent} from './applicants/applicants.component';
-import {SingleApplicantComponent} from './applicants/single-applicant/single-applicant.component';
-import {MatButtonModule} from "@angular/material/button";
-import {CompanyUserApplicationComponent} from './application/company-user-application.component';
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatTableModule} from "@angular/material/table";
-import {MatPaginatorModule} from "@angular/material/paginator";
-
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { OpenPositionsComponent } from './open-positions.component';
+import { Route, RouterModule } from '@angular/router';
+import { MatDividerModule } from '@angular/material/divider';
+import { SharedModule } from '../../../shared/shared.module';
+import { ApplicantsComponent } from './applicants/applicants.component';
+import { SingleApplicantComponent } from './applicants/single-applicant/single-applicant.component';
+import { MatButtonModule } from '@angular/material/button';
+import { CompanyUserApplicationComponent } from './application/company-user-application.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 export const openPositionsRoutes: Route[] = [
     {
@@ -22,13 +21,13 @@ export const openPositionsRoutes: Route[] = [
     {
         path: ':id/applicants',
         pathMatch: 'full',
-        component: ApplicantsComponent
+        component: ApplicantsComponent,
     },
     {
         path: ':id/applicants/:id',
         pathMatch: 'full',
-        component: CompanyUserApplicationComponent
-    }
+        component: CompanyUserApplicationComponent,
+    },
 ];
 
 @NgModule({
@@ -36,7 +35,7 @@ export const openPositionsRoutes: Route[] = [
         OpenPositionsComponent,
         ApplicantsComponent,
         SingleApplicantComponent,
-        CompanyUserApplicationComponent
+        CompanyUserApplicationComponent,
     ],
     imports: [
         CommonModule,
@@ -47,8 +46,7 @@ export const openPositionsRoutes: Route[] = [
         MatStepperModule,
         MatFormFieldModule,
         MatTableModule,
-        MatPaginatorModule
-    ]
+        MatPaginatorModule,
+    ],
 })
-export class OpenPositionsModule {
-}
+export class OpenPositionsModule {}

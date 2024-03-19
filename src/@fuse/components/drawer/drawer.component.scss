@@ -10,14 +10,15 @@ fuse-drawer {
     min-width: #{$fuse-drawer-width}px;
     max-width: #{$fuse-drawer-width}px;
     z-index: 300;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.35);
     @apply bg-card;
 
     /* Animations */
     &.fuse-drawer-animations-enabled {
         transition-duration: 400ms;
         transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-        transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width;
+        transition-property: visibility, margin-left, margin-right, transform,
+            width, max-width, min-width;
 
         .fuse-drawer-content {
             transition-duration: 400ms;
@@ -40,7 +41,6 @@ fuse-drawer {
 
     /* Left position */
     &.fuse-drawer-position-left {
-
         /* Side mode */
         &.fuse-drawer-mode-side {
             margin-left: -#{$fuse-drawer-width}px;
@@ -68,7 +68,6 @@ fuse-drawer {
 
     /* Right position */
     &.fuse-drawer-position-right {
-
         /* Side mode */
         &.fuse-drawer-mode-side {
             margin-right: -#{$fuse-drawer-width}px;

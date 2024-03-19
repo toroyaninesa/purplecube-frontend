@@ -1,32 +1,44 @@
-<a [routerLink]="showApplicants? [job.id, 'applicants']: ['/jobs/', job.id]" class="flex justify-between w-full job-posting">
+<a
+    [routerLink]="showApplicants ? [job.id, 'applicants'] : ['/jobs/', job.id]"
+    class="flex justify-between w-full job-posting"
+>
     <div class="flex gap-3 info">
-        <img class="logo" src="{{job.company.image_url}}">
+        <img class="logo" src="{{ job.company.image_url }}" />
         <div class="text-info flex flex-col justify-between">
-            <p class="job-title font-medium">{{job.title}}</p>
-            <p class="place">{{job.company.email}}</p>
+            <p class="job-title font-medium">{{ job.title }}</p>
+            <p class="place">{{ job.company.email }}</p>
             <div class="flex gap-3" id="keywords">
-                <p class="keyword">{{job.employment | jobType}}</p>
-                <p class="keyword">{{job.level | jobLevel }}</p>
-                <ng-container *ngFor="let cat of job.categories ; index as index">
-                    <p class="keyword" *ngIf="index < 3">{{cat.title}}</p>
+                <p class="keyword">{{ job.employment | jobType }}</p>
+                <p class="keyword">{{ job.level | jobLevel }}</p>
+                <ng-container
+                    *ngFor="let cat of job.categories; index as index"
+                >
+                    <p class="keyword" *ngIf="index < 3">{{ cat.title }}</p>
                 </ng-container>
             </div>
         </div>
     </div>
     <div class="flex flex-col gap-4 action">
-        <mat-progress-bar mode="determinate" value="{{job.no_applicants / job.max_applications * 100}}"></mat-progress-bar>
-        <p>{{job.no_applicants}} applied out of {{job.max_applications}}</p>
+        <mat-progress-bar
+            mode="determinate"
+            value="{{ (job.no_applicants / job.max_applications) * 100 }}"
+        ></mat-progress-bar>
+        <p>{{ job.no_applicants }} applied out of {{ job.max_applications }}</p>
         <div class="w-full flex items-center gap-2">
             <button
                 mat-button
                 [disabled]="isSaved"
-                [ngClass]="{'disable-click': isSaved}"
-                *ngIf="showSave">
-                <mat-icon class="save"
-                          (click)="saveJob(job.id)">bookmark</mat-icon>
+                [ngClass]="{ 'disable-click': isSaved }"
+                *ngIf="showSave"
+            >
+                <mat-icon class="save" (click)="saveJob(job.id)"
+                    >bookmark</mat-icon
+                >
             </button>
             <button mat-button class="apply" *ngIf="showApply">Apply</button>
-            <button mat-button class="apply" *ngIf="showApplicants">Show Applicants</button>
+            <button mat-button class="apply" *ngIf="showApplicants">
+                Show Applicants
+            </button>
         </div>
     </div>
 </a>

@@ -3,7 +3,7 @@ import { AuthConfirmationRequiredComponent } from 'app/modules/auth/confirmation
 
 export const authConfirmationRequiredRoutes: Route[] = [
     {
-        path     : '',
-        component: AuthConfirmationRequiredComponent
-    }
+        path: '',
+        component: AuthConfirmationRequiredComponent,
+    },
 ];

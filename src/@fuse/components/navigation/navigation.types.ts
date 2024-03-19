@@ -1,31 +1,19 @@
 import { IsActiveMatchOptions } from '@angular/router';
-import {IUserRole} from "../../../app/models/user.model";
+import { IUserRole } from '../../../app/models/user.model';
 
-export interface FuseNavigationItem
-{
+export interface FuseNavigationItem {
     role: IUserRole[];
     id?: string;
     title?: string;
     subtitle?: string;
-    type:
-        | 'aside'
-        | 'basic'
-        | 'collapsable'
-        | 'divider'
-        | 'group'
-        | 'spacer';
+    type: 'aside' | 'basic' | 'collapsable' | 'divider' | 'group' | 'spacer';
     hidden?: (item: FuseNavigationItem) => boolean;
     active?: boolean;
     disabled?: boolean;
     tooltip?: string;
     link?: string;
     externalLink?: boolean;
-    target?:
-        | '_blank'
-        | '_self'
-        | '_parent'
-        | '_top'
-        | string;
+    target?: '_blank' | '_self' | '_parent' | '_top' | string;
     exactMatch?: boolean;
     isActiveMatchOptions?: IsActiveMatchOptions;
     function?: (item: FuseNavigationItem) => void;
@@ -50,10 +38,6 @@ export type FuseVerticalNavigationAppearance =
     | 'dense'
     | 'thin';
 
-export type FuseVerticalNavigationMode =
-    | 'over'
-    | 'side';
+export type FuseVerticalNavigationMode = 'over' | 'side';
 
-export type FuseVerticalNavigationPosition =
-    | 'left'
-    | 'right';
+export type FuseVerticalNavigationPosition = 'left' | 'right';

@@ -10,10 +10,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { QuickChatComponent } from 'app/layout/common/quick-chat/quick-chat.component';
 
 @NgModule({
-    declarations: [
-        QuickChatComponent
-    ],
-    imports     : [
+    declarations: [QuickChatComponent],
+    imports: [
         RouterModule,
         MatButtonModule,
         MatFormFieldModule,
@@ -21,12 +19,8 @@ import { QuickChatComponent } from 'app/layout/common/quick-chat/quick-chat.comp
         MatInputModule,
         FuseDrawerModule,
         FuseScrollbarModule,
-        SharedModule
+        SharedModule,
     ],
-    exports     : [
-        QuickChatComponent
-    ]
+    exports: [QuickChatComponent],
 })
-export class QuickChatModule
-{
-}
+export class QuickChatModule {}

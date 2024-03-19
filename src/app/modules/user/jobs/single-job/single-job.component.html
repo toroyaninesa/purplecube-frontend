@@ -1,23 +1,37 @@
 <div class="flex flex-col p-6 w-full gap-5">
     <div class="flex flex-col gap-5 p-3">
-        <img class="company-img" src="{{job?.company.image_url}}">
-        <p class="title">{{job?.company.name}} - <span style="color: var(--primary)">{{job?.title}}</span></p>
+        <img class="company-img" src="{{ job?.company.image_url }}" />
+        <p class="title">
+            {{ job?.company.name }} -
+            <span style="color: var(--primary)">{{ job?.title }}</span>
+        </p>
         <div class="flex gap-3" id="keywords">
-            <p class="keyword">{{job.employment | jobType}}</p>
-            <p class="keyword">{{job.level | jobLevel }}</p>
-            <ng-container *ngFor="let cat of job.categories ; index as index">
-                <p class="keyword" *ngIf="index < 3">{{cat.title}}</p>
+            <p class="keyword">{{ job.employment | jobType }}</p>
+            <p class="keyword">{{ job.level | jobLevel }}</p>
+            <ng-container *ngFor="let cat of job.categories; index as index">
+                <p class="keyword" *ngIf="index < 3">{{ cat.title }}</p>
             </ng-container>
         </div>
-        <p class="description" style="white-space: pre-line" [innerHTML]="job?.description"></p>
+        <p
+            class="description"
+            style="white-space: pre-line"
+            [innerHTML]="job?.description"
+        ></p>
         <div class="progress">
-            <mat-progress-bar mode="determinate"
-                              value="{{job?.no_applicants / job?.max_applications * 100}}">
+            <mat-progress-bar
+                mode="determinate"
+                value="{{ (job?.no_applicants / job?.max_applications) * 100 }}"
+            >
             </mat-progress-bar>
-            <p>{{job?.no_applicants}} applied out of {{job?.max_applications}}</p>
+            <p>
+                {{ job?.no_applicants }} applied out of
+                {{ job?.max_applications }}
+            </p>
         </div>
         <div class="flex justify-center" *ngIf="user.role === 'USER'">
-            <button mat-button class="apply" (click)="apply(job.id)">Easy Apply</button>
+            <button mat-button class="apply" (click)="apply(job.id)">
+                Easy Apply
+            </button>
         </div>
     </div>
 </div>

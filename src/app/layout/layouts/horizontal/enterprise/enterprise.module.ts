@@ -19,10 +19,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { EnterpriseLayoutComponent } from 'app/layout/layouts/horizontal/enterprise/enterprise.component';
 
 @NgModule({
-    declarations: [
-        EnterpriseLayoutComponent
-    ],
-    imports     : [
+    declarations: [EnterpriseLayoutComponent],
+    imports: [
         HttpClientModule,
         RouterModule,
         MatButtonModule,
@@ -39,12 +37,8 @@ import { EnterpriseLayoutComponent } from 'app/layout/layouts/horizontal/enterpr
         SearchModule,
         ShortcutsModule,
         UserModule,
-        SharedModule
+        SharedModule,
     ],
-    exports     : [
-        EnterpriseLayoutComponent
-    ]
+    exports: [EnterpriseLayoutComponent],
 })
-export class EnterpriseLayoutModule
-{
-}
+export class EnterpriseLayoutModule {}

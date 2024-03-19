@@ -1,51 +1,70 @@
-<form  [formGroup]="newJob" class="flex flex-col p-10 w-full gap-5">
+<form [formGroup]="newJob" class="flex flex-col p-10 w-full gap-5">
     <ng-container formGroupName="job">
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Position Title</mat-label>
-        <input matInput placeholder="Ex. Sr. eastside Barman" formControlName="title">
-    </mat-form-field>
-    <div class="flex w-full gap-5">
-        <mat-form-field class="w-full" appearance="fill">
-            <mat-label>Maximum number of applications</mat-label>
-            <input matInput placeholder="Ex. at most 10 applications" formControlName="max_applications" type="number">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Position Title</mat-label>
+            <input
+                matInput
+                placeholder="Ex. Sr. eastside Barman"
+                formControlName="title"
+            />
         </mat-form-field>
-        <mat-form-field class="w-full" appearance="fill">
-            <mat-label>Seniority</mat-label>
-            <mat-select formControlName="level">
-                <mat-option *ngFor="let item of level | keyvalue" [value]="item.value">
-                    {{item.key | lowercase}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field  class="w-full" appearance="fill">
-            <mat-label>Employment Type</mat-label>
-            <mat-select formControlName="employment">
-                <mat-option *ngFor="let item of employment | keyvalue" [value]="item.value">
-                    {{item.key | lowercase}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+        <div class="flex w-full gap-5">
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Maximum number of applications</mat-label>
+                <input
+                    matInput
+                    placeholder="Ex. at most 10 applications"
+                    formControlName="max_applications"
+                    type="number"
+                />
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Seniority</mat-label>
+                <mat-select formControlName="level">
+                    <mat-option
+                        *ngFor="let item of level | keyvalue"
+                        [value]="item.value"
+                    >
+                        {{ item.key | lowercase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="w-full" appearance="fill">
+                <mat-label>Employment Type</mat-label>
+                <mat-select formControlName="employment">
+                    <mat-option
+                        *ngFor="let item of employment | keyvalue"
+                        [value]="item.value"
+                    >
+                        {{ item.key | lowercase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </ng-container>
     <mat-form-field appearance="fill">
         <mat-label>Categories</mat-label>
         <mat-select multiple formControlName="categories">
-            <mat-option *ngFor="let cat of categories" [value]="cat.id">{{cat.title}}</mat-option>
+            <mat-option *ngFor="let cat of categories" [value]="cat.id">{{
+                cat.title
+            }}</mat-option>
         </mat-select>
     </mat-form-field>
     <ng-container formGroupName="job">
         <editor
             apiKey="zrfpdftgiv47bcebtm9tqdermf72144gb9bygmfdkmo52shb"
             [init]="{
-            icons: 'material',
-            skin: true,
-            plugins: 'wordcount',
-            menubar: true,
-            min_height: 150
-        }"
-            formControlName="description">
+                icons: 'material',
+                skin: true,
+                plugins: 'wordcount',
+                menubar: true,
+                min_height: 150
+            }"
+            formControlName="description"
+        >
         </editor>
     </ng-container>
-    <button mat-button class="primary" (click)="createJob()">Create a new job</button>
+    <button mat-button class="primary" (click)="createJob()">
+        Create a new job
+    </button>
 </form>
-

@@ -1,35 +1,90 @@
 <div class="flex flex-col p-6 w-full gap-5">
     <mat-divider></mat-divider>
     <div *ngFor="let app of applications">
-        <mat-stepper [linear]="true" #stepper [selectedIndex]="app.status === EStatus.SCREENING ? 1 : app.status === EStatus.DECISION ? 2 : 0" >
-        <mat-step [editable]="false" [completed]="app.status === EStatus.SCREENING || app.status === EStatus.DECISION" >
-            <ng-template matStepLabel>Processed</ng-template>
-            <div class="flex flex-col gap-7">
-                <p class="title">{{app.job.company.name}}</p>
-                <img class="company-img" src="{{app.job.company.image_url}}">
-                <p class="font-medium">Hi! Thank you for applying for the position {{app.job.title}} at {{app.job.company.name}}!</p>
-                <p class="desc">We are looking forward to reviewing your application. In case your profile matches our vacancy, the <strong>Processed</strong> stage will be unlocked to you.</p>
-            </div>
-        </mat-step>
-        <mat-step [editable]="false" [completed]="app.status === EStatus.DECISION">
-            <ng-template matStepLabel>Screening interview</ng-template>
-            <div class="flex flex-col gap-10">
-                <p class="title">{{app.job.company.name}}</p>
-                <img class="company-img" src="{{app.job.company.image_url}}">
-                <p class="desc">Dear applicant, we are pleased to invite you to the interview for the position <strong>{{app.job.title}}</strong>. Our hiring manager will reach you out for the details. Afterwards, the <strong>Hiring decision</strong> staged will be unlocked.</p>
-            </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Hiring Decision</ng-template>
-            <div class="flex flex-col gap-10">
-                <p class="title">{{app.job.company.name}}</p>
-                <img class="company-img" src="{{app.job.company.image_url}}">
-                <p class="desc" *ngIf="app.hired; else rejection">Dear applicant, <strong>Congratulations!</strong> We are pleased hire you for the position <strong>{{app.job.title}}</strong>. Our hiring manager will reach you out for the details.</p>
-                <ng-template #rejection><p class="desc">Dear applicant, unfortunately, at the moment we had another candidate who was a better fit. Good luck, and do not hesitate to apply again.</p></ng-template>
-            </div>
-        </mat-step>
-    </mat-stepper>
+        <mat-stepper
+            [linear]="true"
+            #stepper
+            [selectedIndex]="
+                app.status === EStatus.SCREENING
+                    ? 1
+                    : app.status === EStatus.DECISION
+                    ? 2
+                    : 0
+            "
+        >
+            <mat-step
+                [editable]="false"
+                [completed]="
+                    app.status === EStatus.SCREENING ||
+                    app.status === EStatus.DECISION
+                "
+            >
+                <ng-template matStepLabel>Processed</ng-template>
+                <div class="flex flex-col gap-7">
+                    <p class="title">{{ app.job.company.name }}</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="font-medium">
+                        Hi! Thank you for applying for the position
+                        {{ app.job.title }} at {{ app.job.company.name }}!
+                    </p>
+                    <p class="desc">
+                        We are looking forward to reviewing your application. In
+                        case your profile matches our vacancy, the
+                        <strong>Processed</strong> stage will be unlocked to
+                        you.
+                    </p>
+                </div>
+            </mat-step>
+            <mat-step
+                [editable]="false"
+                [completed]="app.status === EStatus.DECISION"
+            >
+                <ng-template matStepLabel>Screening interview</ng-template>
+                <div class="flex flex-col gap-10">
+                    <p class="title">{{ app.job.company.name }}</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="desc">
+                        Dear applicant, we are pleased to invite you to the
+                        interview for the position
+                        <strong>{{ app.job.title }}</strong
+                        >. Our hiring manager will reach you out for the
+                        details. Afterwards, the
+                        <strong>Hiring decision</strong> staged will be
+                        unlocked.
+                    </p>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Hiring Decision</ng-template>
+                <div class="flex flex-col gap-10">
+                    <p class="title">{{ app.job.company.name }}</p>
+                    <img
+                        class="company-img"
+                        src="{{ app.job.company.image_url }}"
+                    />
+                    <p class="desc" *ngIf="app.hired; else rejection">
+                        Dear applicant, <strong>Congratulations!</strong> We are
+                        pleased hire you for the position
+                        <strong>{{ app.job.title }}</strong
+                        >. Our hiring manager will reach you out for the
+                        details.
+                    </p>
+                    <ng-template #rejection
+                        ><p class="desc">
+                            Dear applicant, unfortunately, at the moment we had
+                            another candidate who was a better fit. Good luck,
+                            and do not hesitate to apply again.
+                        </p></ng-template
+                    >
+                </div>
+            </mat-step>
+        </mat-stepper>
         <mat-divider></mat-divider>
     </div>
-
 </div>

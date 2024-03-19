@@ -1,11 +1,10 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {EmploymentTypeEnum} from '../../models/job.model';
+import { Pipe, PipeTransform } from '@angular/core';
+import { EmploymentTypeEnum } from '../../models/job.model';
 
 @Pipe({
-    name: 'jobType'
+    name: 'jobType',
 })
 export class JobTypePipe implements PipeTransform {
-
     transform(value: EmploymentTypeEnum): string {
         switch (value) {
             case EmploymentTypeEnum.CONTRACT:
@@ -18,5 +17,4 @@ export class JobTypePipe implements PipeTransform {
                 return 'Part-time';
         }
     }
-
 }

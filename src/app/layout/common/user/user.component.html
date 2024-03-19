@@ -1,24 +1,17 @@
 <!-- Button -->
 <span class="flex items-center">
-    <span class="flex font-medium gap-1">Welcome,<span class="primary-color">{{user.name}}</span></span>
-<button
-    mat-icon-button
-    [matMenuTriggerFor]="userActions">
-    <span class="flex relative">
-        <mat-icon
-            [svgIcon]="'heroicons_outline:chevron-down'"></mat-icon>
-    </span>
-</button>
-
+    <span class="flex font-medium gap-1"
+        >Welcome,<span class="primary-color">{{ user.name }}</span></span
+    >
+    <button mat-icon-button [matMenuTriggerFor]="userActions">
+        <span class="flex relative">
+            <mat-icon [svgIcon]="'heroicons_outline:chevron-down'"></mat-icon>
+        </span>
+    </button>
 </span>
-<mat-menu
-    [xPosition]="'before'"
-    #userActions="matMenu">
-    <button
-        mat-menu-item
-        (click)="signOut()">
+<mat-menu [xPosition]="'before'" #userActions="matMenu">
+    <button mat-menu-item (click)="signOut()">
         <mat-icon [svgIcon]="'heroicons_outline:logout'"></mat-icon>
         <span>Sign out</span>
     </button>
 </mat-menu>
-

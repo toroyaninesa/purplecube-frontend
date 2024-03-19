@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {User} from '../core/user/user.types';
-import {UserService} from '../core/user/user.service';
-import {AuthService} from '../core/auth/auth.service';
-import {FuseSplashScreenService} from '../../@fuse/services/splash-screen';
-import {catchError, Observable, of, tap} from 'rxjs';
-
+import {
+    ActivatedRouteSnapshot,
+    Resolve,
+    RouterStateSnapshot,
+} from '@angular/router';
+import { User } from '../core/user/user.types';
+import { UserService } from '../core/user/user.service';
+import { AuthService } from '../core/auth/auth.service';
+import { FuseSplashScreenService } from '../../@fuse/services/splash-screen';
+import { catchError, Observable, of, tap } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
-export class HomeDataResolver implements Resolve<User>
-{
+export class HomeDataResolver implements Resolve<User> {
     /**
      * Constructor
      */
@@ -19,10 +21,7 @@ export class HomeDataResolver implements Resolve<User>
         private _userService: UserService,
         private _splashService: FuseSplashScreenService,
         private _authService: AuthService
-
-    )
-    {
-    }
+    ) {}
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -34,9 +33,12 @@ export class HomeDataResolver implements Resolve<User>
      * @param route
      * @param state
      */
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> | Promise<User> | User {
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<User> | Promise<User> | User {
         this._splashService.show();
-        if(this._authService.accessToken) {
+        if (this._authService.accessToken) {
             return this._authService.signInUsingToken().pipe(
                 tap((_) => {
                     this._splashService.hide();
@@ -50,4 +52,3 @@ export class HomeDataResolver implements Resolve<User>
         return of(undefined);
     }
 }
-
