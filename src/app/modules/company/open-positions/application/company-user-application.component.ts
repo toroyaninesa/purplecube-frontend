@@ -19,7 +19,6 @@ export class CompanyUserApplicationComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this._route.snapshot.paramMap.get("id"))
         this._jobService.getApplicantById(+this._route.snapshot.paramMap.get("id"))
             .subscribe((application) => {
                 this.app = application;

@@ -13,9 +13,6 @@ export class AuthService
     private _authenticated: boolean = false;
     private _userRole: IUserRole;
 
-    /**
-     * Constructor
-     */
     constructor(
         private _httpClient: HttpClient,
         private _userService: UserService
@@ -172,7 +169,6 @@ export class AuthService
      */
     check(roles?: IUserRole[]): Observable<{ role: IUserRole; allowed: boolean }>
     {
-        console.log(roles, this._userRole)
         // Check if the user is logged in
         if ( this._authenticated )
         {
@@ -191,14 +187,12 @@ export class AuthService
         // Check the access token availability
         if ( !this.accessToken )
         {
-            console.log(123)
             return of({allowed: false, role: this._userRole});
         }
 
         // Check the access token expire date
         if ( AuthUtils.isTokenExpired(this.accessToken) )
         {
-            console.log("expired")
             return of({
                 allowed: false,
                 role: this._userRole

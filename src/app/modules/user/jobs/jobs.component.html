@@ -79,8 +79,8 @@
                 *ngFor="let job of jobs"
                 [job]="job"
                 [isSaved]="checkSaved(job)"
-                [showApply]="true"
-                [showSave]="true"
+                [showApply]="user.role === 'USER'"
+                [showSave]="user.role === 'USER'"
             ></app-job-posting>
             <mat-paginator [length]="count"
                            [pageSize]="15"

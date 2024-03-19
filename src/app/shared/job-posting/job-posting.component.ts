@@ -29,7 +29,6 @@ export class JobPostingComponent implements OnInit {
   }
 
     saveJob(id: number) {
-        console.log(this.user)
         this.jobService.saveJobToUser(id, +this.user.id).subscribe(res => {
             this.bar.open("Successfully saved", "", {
                 horizontalPosition: "center",

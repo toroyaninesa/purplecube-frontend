@@ -16,7 +16,7 @@
             </mat-progress-bar>
             <p>{{job?.no_applicants}} applied out of {{job?.max_applications}}</p>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center" *ngIf="user.role === 'USER'">
             <button mat-button class="apply" (click)="apply(job.id)">Easy Apply</button>
         </div>
     </div>

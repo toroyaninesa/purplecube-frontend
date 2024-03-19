@@ -71,17 +71,13 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
      */
     private _check(redirectURL: string, roles?: IUserRole[]): Observable<boolean>
     {
-        console.log("calling checl")
         // Check the authentication status
         return this._authService.check(roles)
                    .pipe(
                        switchMap((res) => {
-
-                           console.log(res)
                            // If the user is not authenticated...
                            if ( !res.allowed )
                            {
-                               console.log(234)
                                if(!res.role) {
                                    // Redirect to the sign-in page
                                    this._router.navigate(['sign-in'], {queryParams: {redirectURL}});

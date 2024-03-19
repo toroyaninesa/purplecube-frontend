@@ -295,7 +295,6 @@ export class FuseVerticalNavigationComponent implements OnChanges, OnInit, After
     ngOnInit(): void
     {
         this.activeLinkChildren = this._activeRoute.snapshot.children[0].data.navigationItem;
-        console.log(this.activeLinkChildren)
         // Make sure the name input is not an empty string
         if ( this.name === '' )
         {

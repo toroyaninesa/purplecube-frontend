@@ -29,7 +29,6 @@ export class JobsService {
     }
 
     getJobApplicants(id: number) {
-        console.log(id)
         const url = Location.joinWithSlash(
             environment.baseURL  || '', `/jobs/${id}/applicants`
         );

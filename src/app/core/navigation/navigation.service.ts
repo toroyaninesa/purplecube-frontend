@@ -124,7 +124,6 @@ export class NavigationService {
 
     set page(page){
         this._page.next(page);
-        console.log(this._page)
     }
 
     static getNavigation(role?: IUserRole): Navigation {
