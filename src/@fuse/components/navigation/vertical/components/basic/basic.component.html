@@ -1,0 +1,49 @@
+<!-- Item wrapper -->
+<div
+    class="fuse-vertical-navigation-item-wrapper"
+    [class.fuse-vertical-navigation-item-has-subtitle]="!!item.subtitle"
+    [ngClass]="item.classes?.wrapper">
+
+    <!-- Item with an internal link -->
+    <ng-container *ngIf="item.link && !item.externalLink && !item.function && !item.disabled">
+        <a
+            class="fuse-vertical-navigation-item flex gap-4"
+            [ngClass]="{'fuse-vertical-navigation-item-active-forced': item.active}"
+            [routerLink]="[item.link]"
+            [state] = item
+            [routerLinkActive]="'fuse-vertical-navigation-item-active'"
+            [routerLinkActiveOptions]="isActiveMatchOptions"
+            [matTooltip]="item.tooltip || ''">
+            <ng-container *ngTemplateOutlet="itemTemplate"></ng-container>
+        </a>
+    </ng-container>
+</div>
+
+
+<!-- Item template -->
+<ng-template #itemTemplate>
+
+    <!-- Icon -->
+    <ng-container *ngIf="item.icon">
+        <mat-icon
+            class="primary-icon"
+            [ngClass]="item.classes?.icon"
+            [svgIcon]="item.icon"></mat-icon>
+    </ng-container>
+
+    <!-- Title & Subtitle -->
+
+
+    <!-- Badge -->
+    <ng-container *ngIf="item.badge">
+        <div class="fuse-vertical-navigation-item-badge">
+            <div
+                class="fuse-vertical-navigation-item-badge-content"
+                [ngClass]="item.badge.classes">
+                {{item.badge.title}}
+            </div>
+        </div>
+    </ng-container>
+
+</ng-template>
+

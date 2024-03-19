@@ -1,0 +1,7 @@
+<a [routerLink]="[applicant.id]" class="flex flex-col justify-between applicant">
+    <p class="font-medium text-xl primary-color">{{applicant.user.name}} {{applicant.user.surname}}</p>
+    <p>{{applicant.user.email}}</p>
+    <p>{{applicant.hired ? "Applicant is already hired" : "Applicant is not hired yet"}}</p>
+    <button mat-button class="primary">View Application Progress</button>
+    <button mat-button class="primary-inverse">View Profile</button>
+</a>

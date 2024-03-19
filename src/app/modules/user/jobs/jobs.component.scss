@@ -1,0 +1,23 @@
+.search-box {
+    border: 1px solid var(--primary-mean);
+    padding: 10px;
+}
+
+
+.filters {
+    width: 20%;
+}
+.search-input {
+    border-bottom: 1px solid var(--primary-mean);
+    width: 50%;
+    padding: 6px;
+}
+
+.mat-accordion .mat-expansion-panel {
+    box-shadow: none !important;
+}
+
+#people {
+    max-height: 400px;
+    object-fit: cover;
+}

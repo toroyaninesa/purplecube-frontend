@@ -1,0 +1,13 @@
+@import 'styles/appearances/default';
+@import 'styles/appearances/compact';
+@import 'styles/appearances/dense';
+@import 'styles/appearances/thin';
+
+.fuse-vertical-navigation-content {
+    background-color: white !important;
+    border-right: 1px solid var(--primary-mean) ;
+}
+
+fuse-vertical-navigation-basic-item {
+    width: max-content !important;
+}

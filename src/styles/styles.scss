@@ -1,0 +1,94 @@
+/* ----------------------------------------------------------------------------------------------------- */
+/*  @ Import/write your custom styles here.
+/*  @ Styles from this file will override 'vendors.scss' and Fuse's base styles.
+/* ----------------------------------------------------------------------------------------------------- */
+
+
+:root {
+   --primary: #2c43d7;
+    --primary-light: #F8F8FD;
+    --primary-mean: #EEEEEE;
+    --accent: #48AFFA;
+    --accent-alt: #57CDAD;
+}
+
+mat-divider {
+    border-bottom-color: var(--primary-mean ) !important;
+    border-right-color: var(--primary-mean) !important;
+    border-top-color: var(--primary-mean) !important;
+    border-left-color: var(--primary-mean) !important;
+
+}
+
+.mat-accordion .mat-expansion-panel {
+    box-shadow: none !important;
+}
+
+.primary-icon:hover {
+    color: var(--primary) !important;
+}
+.logo-text {
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 20px;
+    letter-spacing: -1px;
+}
+.fuse-vertical-navigation-item-active {
+    .mat-icon {
+        color: var(--primary) !important;
+    }
+    .fuse-vertical-navigation-item-title {
+        color: var(--primary) !important;
+        font-weight: 600;
+    }
+}
+.fuse-vertical-navigation-item-title {
+    color: black !important;
+    font-weight: 400;
+}
+
+.primary-color {
+    color: var(--primary) !important;
+}
+
+.white-back {
+    background-color: #FFFFFF !important;
+}
+.title {
+    font-size: 25px;
+    color: #000000;
+    font-weight: 500;
+}
+
+.primary-back {
+    background-color:  var(--primary) !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+
+
+}
+.snackbar {
+    background-color: var(--primary) !important;
+    color: white !important;;
+}
+
+.inverted {
+    border: solid 2px var(--primary-mean) !important;
+    color: var(--primary) !important;
+    font-weight: 500;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.primary {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+.primary-inverse {
+    border:solid 2px var(--primary) !important;
+    color: var(--primary) !important;
+}

@@ -1,0 +1,30 @@
+.inverted {
+    border: solid 2px var(--primary-mean);
+    color: var(--primary);
+    padding: 10px;
+    font-weight: 500;
+    width: 180px;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.company-img {
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.desc {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--primary);
+}

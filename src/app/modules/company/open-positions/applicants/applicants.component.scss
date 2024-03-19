@@ -1,0 +1,12 @@
+app-single-applicant {
+    height: 100%;
+}
+
+tr , #rows:hover {
+    background: whitesmoke;
+    cursor: pointer;
+}
+#no-data {
+    max-width: 650px;
+    object-fit: contain;
+}

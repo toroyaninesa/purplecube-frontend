@@ -1,0 +1,56 @@
+$red: #fc5545;
+$green: #005E61;
+$greenLight: #42BA80;
+$yellow: #ffcf6f;
+$orange: #F57859;
+$orangeLight: #FABD91;
+$blue: #29A8BF;
+
+
+
+$colors: ($green, $greenLight, $yellow, $orange, $orangeLight, $blue);
+$repeat: 10;
+
+.job-posting {
+    border: 1px solid var(--primary-mean);
+    padding: 14px 20px;
+
+}
+
+
+.logo {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--primary-mean);
+}
+
+
+.apply {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+
+
+@for $i from 1 through $repeat {
+    #keywords > p:nth-child(#{length($colors)}n+#{$i}) {
+        $randomColor: nth($colors, random(length($colors)));
+        color: $randomColor;
+        border: 2px solid $randomColor;
+    }
+}
+.keyword {
+    border-radius: 20px;
+    padding: 3px;
+    width: 100px;
+    text-align: center;
+}
+
+.save{
+    color: var(--primary) !important;
+}
+
+.disable-click {
+    pointer-events: none;
+}

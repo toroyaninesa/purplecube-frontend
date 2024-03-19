@@ -1,0 +1,11 @@
+<div class="flex flex-col p-6 w-full gap-5">
+    <div class="flex flex-col w-full gap-5">
+        <app-job-posting
+            *ngFor="let job of jobs"
+            [job]="job"
+            [isSaved]="true"
+            [showSave]="false"
+            [showApply]="true"
+        ></app-job-posting>
+    </div>
+</div>
