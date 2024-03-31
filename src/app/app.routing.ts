@@ -7,6 +7,7 @@ import { IUserRole } from './models/user.model';
 
 export const appRoutes: Route[] = [
     { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'jobs' },
+    { path: '', redirectTo: '/sign-in' , pathMatch: 'full'},
     // Auth routes for guests
     {
         path: '',
