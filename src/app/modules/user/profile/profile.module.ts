@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/shared.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
     declarations: [ProfileComponent],
@@ -23,6 +25,8 @@ import { SharedModule } from '../../../shared/shared.module';
         MatFormFieldModule,
         MatInputModule,
         SharedModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
     ],
 })
 export class ProfileModule {}
