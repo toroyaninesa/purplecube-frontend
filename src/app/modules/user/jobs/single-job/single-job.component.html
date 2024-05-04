@@ -1,14 +1,13 @@
-
 <div class="flex flex-col p-6 w-full gap-5">
     <div class="flex flex-col gap-5 p-3">
-        <img class="company-img" src="{{ job?.company.image_url }}" style="margin-bottom: 30px;">
+        <img class="company-img" [src]="job?.company.image_url" alt="Company Logo">
         <div class="description-container">
-            <div class="flex flex-col" style="margin-bottom: 20px;">
-                <p class="title" style="margin-bottom: 20px;"> <!-- Increased margin-bottom -->
+            <div class="flex flex-col">
+                <p class="title">
                     {{ job?.company.name }} -
-                    <span style="color: var(--primary)">{{ job?.title }}</span>
+                    <span class="job-title">{{ job?.title }}</span>
                 </p>
-                <div class="flex gap-3" id="keywords" style="margin-bottom: 20px;"> <!-- Increased margin-bottom -->
+                <div class="flex gap-3" id="keywords">
                     <p class="keyword">{{ job.employment | jobType }}</p>
                     <p class="keyword">{{ job.level | jobLevel }}</p>
                     <ng-container *ngFor="let cat of job.categories; index as index">
@@ -26,7 +25,7 @@
         <div class="progress">
             <mat-progress-bar
                 mode="determinate"
-                value="{{ (job?.no_applicants / job?.max_applications) * 100 }}"
+                [value]="(job?.no_applicants / job?.max_applications) * 100"
             >
             </mat-progress-bar>
             <p>
