@@ -1,0 +1,36 @@
+<ng-container>
+    <mat-stepper orientation="vertical" #stepper>
+        <mat-step *ngFor="let experience of experienceList">
+            <div class="flex flex-col gap-3">
+                <ng-template matStepLabel
+                ><span class="text-2xl">{{
+                        experience.positionTitle
+                    }}</span></ng-template
+                >
+                <p>
+                    <span class="label">Company: </span>
+                    <span
+                        [style.color]="'var(--primary)'"
+                        class="font-medium"
+                    >{{ experience.companyName }}</span
+                    >
+                </p>
+                <p style="white-space: pre-line">
+                    <span class="label">Description:</span>
+                    {{ experience.description }}
+                </p>
+                <p>
+                    <span class="label">Start Date:</span>
+                    {{ experience.startDate | date }}
+                </p>
+                <p>
+                    <span class="label">End Date:</span>
+                    {{ experience.endDate | date }}
+                </p>
+                <button *ngIf="onDelete" mat-icon-button (click)="onDelete(experience.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</ng-container>

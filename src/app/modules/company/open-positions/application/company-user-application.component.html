@@ -33,41 +33,7 @@
                         an interview or not.Choose the corresponding action
                         below.
                     </p>
-                    <ng-container>
-                        <mat-stepper orientation="vertical" #stepper>
-                            <mat-step
-                                *ngFor="let experience of app.user.experience"
-                            >
-                                <div class="flex flex-col gap-3">
-                                    <ng-template matStepLabel
-                                        ><span class="text-2xl">{{
-                                            experience.positionTitle
-                                        }}</span></ng-template
-                                    >
-                                    <p>
-                                        <span class="label">Company: </span>
-                                        <span
-                                            [style.color]="'var(--primary)'"
-                                            class="font-medium"
-                                            >{{ experience.companyName }}</span
-                                        >
-                                    </p>
-                                    <p style="white-space: pre-line">
-                                        <span class="label">Description:</span>
-                                        {{ experience.description }}
-                                    </p>
-                                    <p>
-                                        <span class="label">Start Date:</span>
-                                        {{ experience.startDate | date }}
-                                    </p>
-                                    <p>
-                                        <span class="label">End Date:</span>
-                                        {{ experience.endDate | date }}
-                                    </p>
-                                </div>
-                            </mat-step>
-                        </mat-stepper>
-                    </ng-container>
+                    <app-experience-preview [experienceList]="app.user.experience"></app-experience-preview>
                     <div class="flex gap-5 w-full">
                         <button mat-button class="primary w-full">
                             Invite to screening

@@ -6,5 +6,6 @@ export const profileRoutes: Route[] = [
         path: '',
         pathMatch: 'full',
         component: ProfileComponent,
+        data: { title: 'Profile' }
     },
 ];

@@ -1,36 +1,17 @@
-<form class="work-experience-form">
-    <mat-label class="section-title">Work Experience</mat-label>
-
-    <mat-form-field class="form-field">
-        <mat-label>Company Name</mat-label>
-        <input matInput placeholder="Enter company name">
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-        <mat-label>Position</mat-label>
-        <input matInput placeholder="Enter position">
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-        <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a start date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-        <mat-label>End Date</mat-label>
-        <input matInput [matDatepicker]="picker2" placeholder="Choose an end date">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field class="form-field description-field">
-        <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Enter job description" rows="5"></textarea>
-    </mat-form-field>
-
-
-
-    <button mat-raised-button color="primary" class="submit-button">Add Experience</button>
-</form>
+<mat-label class="section-title">Work Experience</mat-label>
+<div class="flex flex-col w-full gap-5">
+<app-experience-preview
+[experienceList]="experienceList"
+*ngIf="onDelete" [onDelete]="onDelete"
+></app-experience-preview>
+</div>
+<div class="flex flex-col w-full gap-5">
+<app-experience
+    *ngFor="let form of formGroups"
+    [workExperienceForm]="form"
+></app-experience>
+    <button mat-icon-button (click)="onAdd()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<button mat-raised-button color="primary" class="submit-button" (click)="onSave()">Save</button>

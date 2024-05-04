@@ -12,9 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { SharedModule } from '../../../shared/shared.module';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import { ExperienceComponent } from './experience/experience.component';
 
 @NgModule({
-    declarations: [ProfileComponent],
+    declarations: [ProfileComponent, ExperienceComponent],
     imports: [
         CommonModule,
         MatDividerModule,
@@ -27,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         SharedModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatIconModule,
     ],
 })
 export class ProfileModule {}

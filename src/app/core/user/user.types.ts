@@ -21,3 +21,10 @@ export interface IExperience {
     startDate: Date;
     endDate: Date;
 }
+export interface CreateExperience {
+    companyName: string;
+    positionTitle: string;
+    description?: string;
+    startDate: Date | null;
+    endDate: Date | null;
+}
