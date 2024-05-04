@@ -36,9 +36,11 @@ $repeat: 10;
 }
 .keyword {
     border-radius: 20px;
-    padding: 3px;
-    width: 100px;
+    margin-bottom: 20px;
+    padding: 3px 8px;
+    width: auto;
     text-align: center;
+    white-space: nowrap;
 }
 
 .save {
