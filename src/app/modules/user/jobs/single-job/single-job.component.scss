@@ -10,17 +10,6 @@ $repeat: 20;
     text-align: center;
 }
 
-.header {
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.company-img {
-    max-height: 250px;
-    object-fit: cover;
-}
 .description {
     text-align: justify;
 }
@@ -39,6 +28,19 @@ $repeat: 20;
     gap: 10px;
 }
 
+
+.company-img {
+    margin-bottom: 30px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+.job-title {
+    color: var(--primary);
+    margin-bottom: 10px;
+
+}
+
 @for $i from 1 through $repeat {
     #keywords > p:nth-child(#{length($colors)}n + #{$i}) {
         $randomColor: nth($colors, random(length($colors)));
@@ -46,9 +48,25 @@ $repeat: 20;
         border: 2px solid $randomColor;
     }
 }
+
 .keyword {
     border-radius: 20px;
-    padding: 3px;
-    width: 100px;
+    margin-bottom: 20px;
+    padding: 3px 8px;
+    width: auto;
     text-align: center;
+    white-space: nowrap;
+}
+
+.description-container {
+     max-width: 600px;
+     margin: 0 auto;
+ }
+
+.description-container p {
+    white-space: pre-line;
+}
+
+.title {
+    margin-bottom: 10px;
 }
