@@ -35,7 +35,7 @@
             </button>
             <button mat-button class="apply w-full" *ngIf="showApply">Apply</button>
             <button
-              [routerLink]="showApplicants ? [job.id, 'applicants'] : null"
+              [routerLink]="[job.id, 'applicants']"
               mat-button class="apply" *ngIf="showApplicants">
                 Show Applicants
             </button>

@@ -64,7 +64,7 @@
                       </button>
                       <button mat-button
                               class="primary-inverse w-full"
-                              (click)="moveApplicationStatus(rejectionActionId)">
+                              (click)="rejectApplication()">
                         Reject
                       </button>
                       <button mat-button
@@ -78,11 +78,15 @@
                   <ng-template #notActiveApplication>
                     <ng-container *ngIf="isAdminUser; else applicant">
                       <ng-container *ngIf="isTheApplicantHired()">Congratulations! You successfully hired the candidate!</ng-container>
-                      <ng-container *ngIf="isTheApplicantRejected()">The candidate was rejected by you.</ng-container>
+                      <ng-container *ngIf="isTheApplicantRejected()">
+                        The candidate was rejected with the following message
+                        <p [innerHTML]="application.finalStageMessage"></p>
+                      </ng-container>
+
                     </ng-container>
                    <ng-template #applicant>
                      <ng-container *ngIf="isTheApplicantHired()">Congratulations! You are hired!</ng-container>
-                     <ng-container *ngIf="isTheApplicantRejected()">Unfortunately, you got rejected.</ng-container>
+                     <ng-container *ngIf="isTheApplicantRejected()"><p [innerHTML]="application.finalStageMessage"></p></ng-container>
                    </ng-template>
                   </ng-template>
                 </div>

@@ -6,6 +6,8 @@ import {JobStage} from '../../models/job.model';
 import {ApplicationService} from './application.service';
 import { take} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import {RejectionModalComponent} from '../rejection-modal/rejection-modal.component';
 
 @Component({
   selector: 'app-single-application',
@@ -25,8 +27,10 @@ export class ApplicationComponent implements OnInit {
         private _jobService: JobsService,
         private _route: ActivatedRoute,
         private _applicationService: ApplicationService,
-        private _bar: MatSnackBar
-    ) {}
+        private _bar: MatSnackBar,
+        private _dialog: MatDialog,
+
+) {}
 
     ngOnInit(): void {
     }
@@ -52,6 +56,25 @@ export class ApplicationComponent implements OnInit {
             .pipe(take(1)).subscribe((result) => {
             this.application.currentStageId = result.currentStageId;
         });
+    }
+
+    rejectApplication(): void {
+      const dialog = this._dialog.open(RejectionModalComponent, {
+        height: '450px',
+        width: '650px'
+      });
+
+      dialog.afterClosed().pipe(take(1))
+        .subscribe((data) => {
+        if(data.reject) {
+          this._applicationService
+            .moveApplicationStatus(this.application.id, this.rejectionActionId, data.message)
+            .pipe(take(1))
+            .subscribe((result) => {
+              this.application.currentStageId = result.currentStageId;
+            });
+        }
+      });
     }
 
     isTheApplicantHired(): boolean {

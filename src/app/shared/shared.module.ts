@@ -13,20 +13,23 @@ import { MatDividerModule } from '@angular/material/divider';
 import { ApplicationComponent } from './application/application.component';
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatChipsModule} from "@angular/material/chips";
+import { RejectionModalComponent } from './rejection-modal/rejection-modal.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatProgressBarModule,
-        MatIconModule,
-        MatButtonModule,
-        RouterModule,
-        MatDividerModule,
-        MatStepperModule,
-        MatChipsModule,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+    MatDividerModule,
+    MatStepperModule,
+    MatChipsModule,
+    MatInputModule,
+  ],
     exports: [
         CommonModule,
         FormsModule,
@@ -43,6 +46,7 @@ import {MatChipsModule} from "@angular/material/chips";
         JobTypePipe,
         HeaderComponent,
         ApplicationComponent,
+        RejectionModalComponent,
     ],
 })
 export class SharedModule {}
