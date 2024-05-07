@@ -4,7 +4,7 @@
 /* ----------------------------------------------------------------------------------------------------- */
 
 :root {
-    --primary: #2c43d7;
+    --primary: black;
     --primary-light: #f8f8fd;
     --primary-mean: #eeeeee;
     --accent: #48affa;
@@ -87,4 +87,8 @@ mat-divider {
 .primary-inverse {
     border: solid 2px var(--primary) !important;
     color: var(--primary) !important;
+}
+
+.mat-progress-bar::after {
+  background-color: black !important;
 }

@@ -1,0 +1,98 @@
+<div class="flex flex-col p-6 w-full gap-5">
+    <ng-container *ngIf="application">
+        <mat-stepper
+            [linear]="true"
+            [selectedIndex]= "findCurrentStageId()">
+            <mat-step
+                *ngFor="let stage of application.job.jobStages"
+                [editable]="false"
+                [completed]="isTheStageCompleted(application, stage)"
+            >
+                <ng-template matStepLabel>{{stage.stageTitle}}</ng-template>
+                <div class="flex flex-col gap-7 w-full">
+                  <img
+                    class="company-img"
+                    src="{{ application.job.company.image_url }}"
+                  />
+                  <ng-container *ngIf="isTheApplicationActive(); else notActiveApplication">
+                    <p class="title" *ngIf="isAdminUser">
+                      {{ application.user.name + " " + application.user.surname }}
+                    </p>
+                    <p class="font-medium"> {{getStepMessage(stage)}}</p>
+                    <ng-container>
+                      <mat-stepper orientation="vertical">
+                        <mat-step
+                          *ngFor="let experience of application.user.experience"
+                        >
+                          <div class="flex flex-col gap-3">
+                            <ng-template matStepLabel
+                            ><span class="text-2xl">{{
+                              experience.positionTitle
+                              }}</span></ng-template
+                            >
+                            <p>
+                              <span class="label">Company: </span>
+                              <span
+                                [style.color]="'var(--primary)'"
+                                class="font-medium"
+                              >{{ experience.companyName }}</span
+                              >
+                            </p>
+                            <p style="white-space: pre-line">
+                              <span class="label">Description:</span>
+                              {{ experience.description }}
+                            </p>
+                            <p>
+                              <span class="label">Start Date:</span>
+                              {{ experience.startDate | date }}
+                            </p>
+                            <p>
+                              <span class="label">End Date:</span>
+                              {{ experience.endDate | date }}
+                            </p>
+                          </div>
+                        </mat-step>
+                      </mat-stepper>
+                    </ng-container>
+                    <div class="flex gap-5 w-full" *ngIf="isAdminUser && !isTheApplicantHired()">
+                      <button
+                        mat-button
+                        class="primary w-full"
+                        *ngIf="determineNextAction()"
+                        (click)="moveApplicationStatus(nextStage.orderNumber)">
+                        Move to stage {{nextStage.stageTitle}}
+                      </button>
+                      <button mat-button
+                              class="primary-inverse w-full"
+                              (click)="rejectApplication()">
+                        Reject
+                      </button>
+                      <button mat-button
+                              *ngIf="!nextStage"
+                              class="primary w-full"
+                              (click)="moveApplicationStatus(hireActionId)">
+                        Hire
+                      </button>
+                    </div>
+                  </ng-container>
+                  <ng-template #notActiveApplication>
+                    <ng-container *ngIf="isAdminUser; else applicant">
+                      <ng-container *ngIf="isTheApplicantHired()">Congratulations! You successfully hired the candidate!</ng-container>
+                      <ng-container *ngIf="isTheApplicantRejected()">
+                        The candidate was rejected with the following message
+                        <p [innerHTML]="application.finalStageMessage"></p>
+                      </ng-container>
+
+                    </ng-container>
+                   <ng-template #applicant>
+                     <ng-container *ngIf="isTheApplicantHired()">Congratulations! You are hired!</ng-container>
+                     <ng-container *ngIf="isTheApplicantRejected()"><p [innerHTML]="application.finalStageMessage"></p></ng-container>
+                   </ng-template>
+                  </ng-template>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <mat-divider></mat-divider>
+    </ng-container>
+
+</div>

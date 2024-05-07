@@ -10,6 +10,7 @@ export interface IJob {
     employment: EmploymentTypeEnum;
     level: EmploymentLevelEnum;
     categories: { id: number; title: string }[];
+    jobStages: JobStage[];
 }
 
 export enum EmploymentTypeEnum {
@@ -29,4 +30,12 @@ export enum EmploymentLevelEnum {
 export interface ICategory {
     id: number;
     title: string;
+}
+
+export interface JobStage {
+   id: number;
+   orderNumber: number;
+   stagePrefix: string;
+   stageTitle: string;
+   stageMessage: string;
 }

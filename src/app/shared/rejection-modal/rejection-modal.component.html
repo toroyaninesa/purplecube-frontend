@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-4 justify-between h-full">
+  <div class="flex flex-col gap-2">
+    <p class="title">Reject your candidate with AI 🚀</p>
+    <p>Make use of GPT powered rejection messaging and adjust as needed! </p>
+    <textarea class="w-full textForm" matInput placeholder="Generating a message...">{{message}}</textarea>
+  </div>
+  <div class="flex justify-between gap-2">
+    <button mat-button class="w-full"  (click)="close()">Cancel</button>
+    <button mat-button class="primary w-full" (click)="reject()">Reject Anyway</button>
+  </div>
+</div>

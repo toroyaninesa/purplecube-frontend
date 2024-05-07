@@ -10,21 +10,27 @@ import { JobLevelPipe } from './pipes/job-level.pipe';
 import { JobTypePipe } from './pipes/job-type.pipe';
 import { HeaderComponent } from './header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
-import { ExperiencePreviewComponent } from './experience-preview/experience-preview.component';
+import { ApplicationComponent } from './application/application.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatChipsModule} from '@angular/material/chips';
+import { RejectionModalComponent } from './rejection-modal/rejection-modal.component';
+import {MatInputModule} from '@angular/material/input';
+import { ExperiencePreviewComponent } from './experience-preview/experience-preview.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatProgressBarModule,
-        MatIconModule,
-        MatButtonModule,
-        RouterModule,
-        MatDividerModule,
-        MatStepperModule,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterModule,
+    MatDividerModule,
+    MatStepperModule,
+    MatChipsModule,
+    MatInputModule,
+  ],
     exports: [
         CommonModule,
         FormsModule,
@@ -33,6 +39,7 @@ import {MatStepperModule} from '@angular/material/stepper';
         JobLevelPipe,
         JobTypePipe,
         HeaderComponent,
+        ApplicationComponent,
         ExperiencePreviewComponent,
     ],
     declarations: [
@@ -40,6 +47,8 @@ import {MatStepperModule} from '@angular/material/stepper';
         JobLevelPipe,
         JobTypePipe,
         HeaderComponent,
+        ApplicationComponent,
+        RejectionModalComponent,
         ExperiencePreviewComponent,
     ],
 })

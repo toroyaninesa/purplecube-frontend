@@ -42,12 +42,14 @@ export class AuthInterceptor implements HttpInterceptor {
             this._authService.accessToken &&
             !AuthUtils.isTokenExpired(this._authService.accessToken)
         ) {
+          if(req.url !== 'https://api.openai.com/v1/chat/completions') {
             newReq = req.clone({
-                headers: req.headers.set(
-                    'Authorization',
-                    'Bearer ' + this._authService.accessToken
-                ),
+              headers: req.headers.set(
+                'Authorization',
+                'Bearer ' + this._authService.accessToken
+              ),
             });
+          }
         }
 
         // Response
