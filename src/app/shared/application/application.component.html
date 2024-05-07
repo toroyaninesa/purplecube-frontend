@@ -1,0 +1,70 @@
+<div class="flex flex-col p-6 w-full gap-5">
+    <ng-container *ngIf="application">
+        <mat-stepper
+            [linear]="true"
+            [selectedIndex]= "findCurrentStageId()">
+            <mat-step
+                *ngFor="let stage of application.job.jobStages"
+                [editable]="false"
+                [completed]="isTheStageCompleted(application, stage)"
+            >
+                <ng-template matStepLabel>{{stage.stageTitle}}</ng-template>
+                <div class="flex flex-col gap-7 w-full">
+                    <img
+                        class="company-img"
+                        src="{{ application.job.company.image_url }}"
+                    />
+                    <p class="title" *ngIf="isAdminUser">
+                        {{ application.user.name + " " + application.user.surname }}
+                    </p>
+                    <p class="font-medium"> {{getStepMessage(stage)}}</p>
+                    <ng-container>
+                        <mat-stepper orientation="vertical">
+                            <mat-step
+                                *ngFor="let experience of application.user.experience"
+                            >
+                                <div class="flex flex-col gap-3">
+                                    <ng-template matStepLabel
+                                    ><span class="text-2xl">{{
+                                        experience.positionTitle
+                                        }}</span></ng-template
+                                    >
+                                    <p>
+                                        <span class="label">Company: </span>
+                                        <span
+                                            [style.color]="'var(--primary)'"
+                                            class="font-medium"
+                                        >{{ experience.companyName }}</span
+                                        >
+                                    </p>
+                                    <p style="white-space: pre-line">
+                                        <span class="label">Description:</span>
+                                        {{ experience.description }}
+                                    </p>
+                                    <p>
+                                        <span class="label">Start Date:</span>
+                                        {{ experience.startDate | date }}
+                                    </p>
+                                    <p>
+                                        <span class="label">End Date:</span>
+                                        {{ experience.endDate | date }}
+                                    </p>
+                                </div>
+                            </mat-step>
+                        </mat-stepper>
+                    </ng-container>
+                    <div class="flex gap-5 w-full" *ngIf="isAdminUser">
+                        <button mat-button class="primary w-full" (click)="moveApplicationStatus(determineNextAction().id)">
+                            Move to stage {{determineNextAction().stageTitle}}
+                        </button>
+                        <button mat-button class="primary-inverse w-full" (click)="moveApplicationStatus(rejectionActionId)">
+                            Reject
+                        </button>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-stepper>
+        <mat-divider></mat-divider>
+    </ng-container>
+
+</div>

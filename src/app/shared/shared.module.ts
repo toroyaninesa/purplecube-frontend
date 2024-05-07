@@ -10,6 +10,8 @@ import { JobLevelPipe } from './pipes/job-level.pipe';
 import { JobTypePipe } from './pipes/job-type.pipe';
 import { HeaderComponent } from './header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { ApplicationComponent } from './application/application.component';
+import {MatStepperModule} from "@angular/material/stepper";
 
 @NgModule({
     imports: [
@@ -21,6 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
         MatButtonModule,
         RouterModule,
         MatDividerModule,
+        MatStepperModule,
     ],
     exports: [
         CommonModule,
@@ -30,12 +33,14 @@ import { MatDividerModule } from '@angular/material/divider';
         JobLevelPipe,
         JobTypePipe,
         HeaderComponent,
+        ApplicationComponent,
     ],
     declarations: [
         JobPostingComponent,
         JobLevelPipe,
         JobTypePipe,
         HeaderComponent,
+        ApplicationComponent,
     ],
 })
 export class SharedModule {}
