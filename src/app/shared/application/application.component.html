@@ -54,8 +54,12 @@
                         </mat-stepper>
                     </ng-container>
                     <div class="flex gap-5 w-full" *ngIf="isAdminUser">
-                        <button mat-button class="primary w-full" (click)="moveApplicationStatus(determineNextAction().id)">
-                            Move to stage {{determineNextAction().stageTitle}}
+                        <button
+                            mat-button
+                            class="primary w-full"
+                            *ngIf="determineNextAction()"
+                            (click)="moveApplicationStatus(nextStage.orderNumber)">
+                            Move to stage {{nextStage.stageTitle}}
                         </button>
                         <button mat-button class="primary-inverse w-full" (click)="moveApplicationStatus(rejectionActionId)">
                             Reject
