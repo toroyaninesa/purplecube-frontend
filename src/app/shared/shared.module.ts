@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { ApplicationComponent } from './application/application.component';
 import {MatStepperModule} from "@angular/material/stepper";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import {MatStepperModule} from "@angular/material/stepper";
         RouterModule,
         MatDividerModule,
         MatStepperModule,
+        MatChipsModule,
     ],
     exports: [
         CommonModule,

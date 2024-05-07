@@ -1,20 +1,18 @@
 <a
-    [routerLink]="showApplicants ? [job.id, 'applicants'] : ['/jobs/', job.id]"
-    class="flex justify-between w-full job-posting"
+  [routerLink]="!showApplicants ? ['/jobs/', job.id] : null"
+  class="flex justify-between w-full job-posting"
 >
     <div class="flex gap-3 info">
         <img class="logo" src="{{ job.company.image_url }}" />
-        <div class="text-info flex flex-col justify-between">
+        <div class="text-info flex flex-col gap-2 justify-between">
             <p class="job-title font-medium">{{ job.title }}</p>
             <p class="place">{{ job.company.email }}</p>
-            <div class="flex gap-3" id="keywords">
-                <p class="keyword">{{ job.employment | jobType }}</p>
-                <p class="keyword">{{ job.level | jobLevel }}</p>
-                <ng-container
-                    *ngFor="let cat of job.categories; index as index"
-                >
-                    <p class="keyword" *ngIf="index < 3">{{ cat.title }}</p>
-                </ng-container>
+            <div class="flex gap-6">
+                  <mat-chip-list>
+                    <mat-chip *ngFor="let cat of job.categories; index as index">{{cat.title}}</mat-chip>
+                    <mat-chip>{{ job.employment | jobType }}</mat-chip>
+                    <mat-chip>{{ job.level | jobLevel }}</mat-chip>
+                  </mat-chip-list>
             </div>
         </div>
     </div>
@@ -35,8 +33,10 @@
                     >bookmark</mat-icon
                 >
             </button>
-            <button mat-button class="apply" *ngIf="showApply">Apply</button>
-            <button mat-button class="apply" *ngIf="showApplicants">
+            <button mat-button class="apply w-full" *ngIf="showApply">Apply</button>
+            <button
+              [routerLink]="showApplicants ? [job.id, 'applicants'] : null"
+              mat-button class="apply" *ngIf="showApplicants">
                 Show Applicants
             </button>
         </div>

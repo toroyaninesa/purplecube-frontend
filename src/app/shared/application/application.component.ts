@@ -18,8 +18,10 @@ export class ApplicationComponent implements OnInit {
 
     public nextStage: JobStage;
     readonly rejectionActionId = -500;
+    readonly hireActionId = -200;
 
-    constructor(
+
+  constructor(
         private _jobService: JobsService,
         private _route: ActivatedRoute,
         private _applicationService: ApplicationService,
@@ -42,7 +44,7 @@ export class ApplicationComponent implements OnInit {
 
     isTheStageCompleted(application, stage: JobStage): boolean {
         const currentStageId = this.application?.currentStageId;
-        return currentStageId > stage.orderNumber;
+        return currentStageId > stage.orderNumber || !this.isTheApplicationActive();
     }
 
     moveApplicationStatus(stageId: number ): void {
@@ -52,9 +54,21 @@ export class ApplicationComponent implements OnInit {
         });
     }
 
+    isTheApplicantHired(): boolean {
+    return this.application.currentStageId === this.hireActionId;
+    }
+
+  isTheApplicantRejected(): boolean {
+    return this.application.currentStageId === this.rejectionActionId;
+  }
+
     getStepMessage(stage: JobStage): string {
         return this.isAdminUser ? ' Hi! Please carefully take a look at the applicant\n' +
             '                        profile and choose the appropriate actions from the below list!'
             : stage.stageMessage;
     }
+
+  isTheApplicationActive(): boolean {
+    return !(this.isTheApplicantRejected() || this.isTheApplicantHired());
+  }
 }
