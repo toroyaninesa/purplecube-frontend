@@ -2,7 +2,7 @@
 <div class="flex flex-col w-full gap-5">
 <app-experience-preview
 [experienceList]="experienceList"
-*ngIf="onDelete" [onDelete]="onDelete"
+(delete)="onDelete($event)"
 ></app-experience-preview>
 </div>
 <div class="flex flex-col w-full gap-5">

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { FormGroup} from '@angular/forms';
 
 @Component({
@@ -6,11 +6,8 @@ import { FormGroup} from '@angular/forms';
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss']
 })
-export class ExperienceComponent implements OnInit {
+export class ExperienceComponent {
     @Input() workExperienceForm: FormGroup;
   constructor(  ) { }
-
-  ngOnInit(): void {
-  }
 
 }

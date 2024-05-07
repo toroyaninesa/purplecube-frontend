@@ -27,7 +27,7 @@
                     <span class="label">End Date:</span>
                     {{ experience.endDate | date }}
                 </p>
-                <button *ngIf="onDelete" mat-icon-button (click)="onDelete(experience.id)">
+                <button *ngIf="delete" mat-icon-button (click)="delete.emit(experience.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>

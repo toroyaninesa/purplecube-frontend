@@ -26,13 +26,12 @@ export class ProfileService {
         );
         return this._httpClient.get<IExperience[]>(url);
     }
-    deleteExperience(id: number): any{
-        console.log(`trying to delete in service ${id}`);
+    deleteExperience(id: number): Observable<boolean>{
         const url = Location.joinWithSlash(
             environment.baseURL || '',
             `/user/experience/${id}`,
         );
-        return this._httpClient.delete(url);
+        return this._httpClient.delete<boolean>(url);
     }
 
 
