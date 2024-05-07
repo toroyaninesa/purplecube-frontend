@@ -43,7 +43,7 @@ export class CompanyUserApplicationComponent implements OnInit {
 
     isTheStageCompleted(application, stage: JobStage): boolean {
         const currentStageId = this.application?.currentStageId;
-        return currentStageId >= stage.orderNumber;
+        return currentStageId > stage.orderNumber;
     }
 
     moveApplicationStatus(actionId: number ): void {
