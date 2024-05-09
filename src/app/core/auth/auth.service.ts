@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
-import { AuthUtils } from 'app/core/auth/auth.utils';
-import { UserService } from 'app/core/user/user.service';
-import { Location } from '@angular/common';
-import { environment } from '../../../environments/environment';
-import { IUserRole } from '../../models/user.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {catchError, Observable, of, switchMap, throwError} from 'rxjs';
+import {AuthUtils} from 'app/core/auth/auth.utils';
+import {UserService} from 'app/core/user/user.service';
+import {Location} from '@angular/common';
+import {environment} from '../../../environments/environment';
+import {IUserRole} from '../../models/user.model';
+import {User} from '../user/user.types';
 
 @Injectable()
 export class AuthService {
@@ -24,13 +25,13 @@ export class AuthService {
     /**
      * Setter & getter for access token
      */
+    get accessToken(): string {
+      return localStorage.getItem('accessToken') ?? '';
+    }
     set accessToken(token: string) {
         localStorage.setItem('accessToken', token);
     }
 
-    get accessToken(): string {
-        return localStorage.getItem('accessToken') ?? '';
-    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -144,14 +145,29 @@ export class AuthService {
      * @param user
      */
     signUp(user: {
-        name: string;
-        email: string;
-        password: string;
-    }): Observable<any> {
-        return this._httpClient.post(
-            'http://localhost:3000/auth/register',
-            user
-        );
+      name: string;
+      surname: string;
+      email: string;
+      password: string;
+      role: IUserRole;
+    }): Observable<{ user: User; token: string }> {
+     const obs = this._httpClient.post<{ user: User; token: string}>(
+        'http://localhost:3000/auth/register',
+        user
+      );
+     obs.subscribe((res) => {
+       // Store the access token in the local storage
+       this.accessToken = res.token;
+
+       // Set the authenticated flag to true
+       this._authenticated = true;
+
+       // Store the user on the user service
+       this._userService.user = res.user;
+
+       this._userRole = user.role;
+     });
+      return obs;
     }
 
     /**
