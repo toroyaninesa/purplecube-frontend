@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {fuseAnimations} from '@fuse/animations';
-import {FuseAlertType} from '@fuse/components/alert';
-import {AuthService} from 'app/core/auth/auth.service';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { fuseAnimations } from '@fuse/animations';
+import { FuseAlertType } from '@fuse/components/alert';
+import { AuthService } from 'app/core/auth/auth.service';
 import {IUserRole} from '../../../models/user.model';
 
 @Component({
@@ -19,7 +19,7 @@ export class AuthSignUpComponent implements OnInit {
         type: 'success',
         message: '',
     };
-    signUpForm: FormGroup;
+    signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
     roles = Object.values(IUserRole);
 
@@ -28,7 +28,7 @@ export class AuthSignUpComponent implements OnInit {
      */
     constructor(
         private _authService: AuthService,
-        private _formBuilder: FormBuilder,
+        private _formBuilder: UntypedFormBuilder,
         private _router: Router
     ) {}
 

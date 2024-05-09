@@ -11,7 +11,7 @@ import {
 } from '../../../models/job.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { NavigationService } from '../../../core/navigation/navigation.service';
 
 @Component({
@@ -43,7 +43,7 @@ export class NewVacancyComponent implements OnInit {
     constructor(
         private _jobService: JobsService,
         private _bar: MatSnackBar,
-        private _builder: FormBuilder,
+        private _builder: UntypedFormBuilder,
         private _nav: NavigationService
     ) {}
 
