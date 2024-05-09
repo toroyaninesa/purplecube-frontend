@@ -13,4 +13,8 @@ export class ExperiencePreviewComponent {
 
     constructor( ) {}
 
+  onDeleteExperience(id: number): void {
+    this.delete.emit(id);
+  }
+
 }
