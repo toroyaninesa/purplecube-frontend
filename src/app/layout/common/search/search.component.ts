@@ -13,7 +13,7 @@ import {
     ViewChild,
     ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { debounceTime, filter, map, Subject, takeUntil } from 'rxjs';
 import { fuseAnimations } from '@fuse/animations/public-api';
@@ -33,7 +33,7 @@ export class SearchComponent implements OnChanges, OnInit, OnDestroy {
 
     opened: boolean = false;
     resultSets: any[];
-    searchControl: FormControl = new FormControl();
+    searchControl: UntypedFormControl = new UntypedFormControl();
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
