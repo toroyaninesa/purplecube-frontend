@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavigationService} from '../../../core/navigation/navigation.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProfileService} from '../../../service/profile.service';
-import {CreateExperience, IExperience} from '../../../core/user/user.types';
+import {ICreateExperience, IExperience} from '../../../models/user.model';
 import {NavigationEnd, Router} from '@angular/router';
 
 
@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
         if (this.formGroups.some(value => value.invalid)) {
             return;
         }
-        const experienceList: CreateExperience[] = [];
+        const experienceList: ICreateExperience[] = [];
         this.formGroups.forEach(form => experienceList.push(
             {
                 companyName: form.value.companyName,

@@ -3,7 +3,7 @@ import { IJob } from '../../models/job.model';
 import { JobsService } from '../../service/jobs.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../../core/user/user.service';
-import { User } from '../../core/user/user.types';
+import { IUser } from '../../models/user.model';
 
 @Component({
     selector: 'app-job-posting',
@@ -16,7 +16,7 @@ export class JobPostingComponent implements OnInit {
     @Input() showSave: boolean;
     @Input() showApply: boolean;
     @Input() showApplicants: boolean = false;
-    user: User;
+    user: IUser;
     constructor(
         private jobService: JobsService,
         private userService: UserService,

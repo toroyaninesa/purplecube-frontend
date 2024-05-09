@@ -1,11 +1,11 @@
-import { User } from '../core/user/user.types';
+import { IUser } from './user.model';
 import {IJob} from './job.model';
 
 export interface IApplication {
     id: number;
     hired: boolean;
     currentStageId: number;
-    user: User;
+    user: IUser;
     job: IJob;
     finalStageMessage: string;
 }
