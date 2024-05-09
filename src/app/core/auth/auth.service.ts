@@ -5,7 +5,7 @@ import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
-import { IUserRole } from '../../models/user.model';
+import {IUserRole} from "../user/user.types";
 
 @Injectable()
 export class AuthService {
