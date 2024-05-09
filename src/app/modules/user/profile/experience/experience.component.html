@@ -1,0 +1,31 @@
+<form [formGroup]="workExperienceForm" class="work-experience-form">
+    <mat-form-field class="form-field">
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="companyName" placeholder="Enter company name">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Position</mat-label>
+        <input matInput formControlName="positionTitle" placeholder="Enter position">
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate" placeholder="Choose a start date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" placeholder="Choose an end date">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="form-field description-field">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Enter job description" rows="5"></textarea>
+    </mat-form-field>
+    <div class="line-divider"></div>
+</form>

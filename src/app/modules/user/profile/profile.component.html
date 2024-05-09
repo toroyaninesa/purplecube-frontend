@@ -1,0 +1,17 @@
+<mat-label class="section-title">Work Experience</mat-label>
+<div class="flex flex-col w-full gap-5">
+<app-experience-preview
+[experienceList]="experienceList"
+(delete)="onDelete($event)"
+></app-experience-preview>
+</div>
+<div class="flex flex-col w-full gap-5">
+<app-experience
+    *ngFor="let form of formGroups"
+    [workExperienceForm]="form"
+></app-experience>
+    <button mat-icon-button (click)="onAdd()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<button mat-raised-button color="primary" class="submit-button" (click)="onSave()">Save</button>

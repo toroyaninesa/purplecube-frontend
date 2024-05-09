@@ -11,10 +11,11 @@ import { JobTypePipe } from './pipes/job-type.pipe';
 import { HeaderComponent } from './header/header.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { ApplicationComponent } from './application/application.component';
-import {MatStepperModule} from "@angular/material/stepper";
-import {MatChipsModule} from "@angular/material/chips";
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatChipsModule} from '@angular/material/chips';
 import { RejectionModalComponent } from './rejection-modal/rejection-modal.component';
-import {MatInputModule} from "@angular/material/input";
+import {MatInputModule} from '@angular/material/input';
+import { ExperiencePreviewComponent } from './experience-preview/experience-preview.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {MatInputModule} from "@angular/material/input";
         JobTypePipe,
         HeaderComponent,
         ApplicationComponent,
+        ExperiencePreviewComponent,
     ],
     declarations: [
         JobPostingComponent,
@@ -47,6 +49,7 @@ import {MatInputModule} from "@angular/material/input";
         HeaderComponent,
         ApplicationComponent,
         RejectionModalComponent,
+        ExperiencePreviewComponent,
     ],
 })
 export class SharedModule {}
