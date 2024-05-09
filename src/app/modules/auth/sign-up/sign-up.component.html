@@ -114,7 +114,7 @@
                 <mat-label>Role</mat-label>
                 <mat-select [formControlName]="'role'" id="role">
                   <mat-option *ngFor="let role of roles"
-                              [value]="role">{{ role.charAt(0).toUpperCase() + role.slice(1).toLowerCase() }}
+                              [value]="role">{{ roleLabel(role) }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>

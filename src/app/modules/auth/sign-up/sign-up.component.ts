@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { fuseAnimations } from '@fuse/animations';
-import { FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {NgForm, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {fuseAnimations} from '@fuse/animations';
+import {FuseAlertType} from '@fuse/components/alert';
+import {AuthService} from 'app/core/auth/auth.service';
 import {IUserRole} from '../../../models/user.model';
 
 @Component({
@@ -55,7 +55,11 @@ export class AuthSignUpComponent implements OnInit {
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
+  roleLabel(role: string): string {
+    return role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
+  }
+
+  /**
      * Sign up
      */
     async signUp(): Promise<void> {
@@ -71,11 +75,8 @@ export class AuthSignUpComponent implements OnInit {
         this.showAlert = false;
 
         // Sign up
-      try{
-        await this._authService.signUp(this.signUpForm.value);
-        this._router.navigateByUrl( '/signed-in-redirect');
-      } catch{
-        // Re-enable the form
+    this._authService.signUp(this.signUpForm.value).subscribe({
+      next: () => this._router.navigateByUrl('/sign-in'), error: (res) => {
         this.signUpForm.enable();
 
         // Reset the form
@@ -89,6 +90,7 @@ export class AuthSignUpComponent implements OnInit {
 
         // Show the alert
         this.showAlert = true;
-      }
+      },
+    });
     }
 }

@@ -150,24 +150,11 @@ export class AuthService {
       email: string;
       password: string;
       role: IUserRole;
-    }): Promise<{ user: User; token: string } | undefined> {
-     const obs = this._httpClient.post<{ user: User; token: string}>(
+    }){
+     return this._httpClient.post(
         'http://localhost:3000/auth/register',
         user
       );
-     obs.subscribe((res) => {
-       // Store the access token in the local storage
-       this.accessToken = res.token;
-
-       // Set the authenticated flag to true
-       this._authenticated = true;
-
-       // Store the user on the user service
-       this._userService.user = res.user;
-
-       this._userRole = user.role;
-     });
-      return obs.toPromise();
     }
 
     /**
