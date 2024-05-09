@@ -60,9 +60,9 @@ export class AuthSignUpComponent implements OnInit {
   }
 
   /**
-     * Sign up
-     */
-    async signUp(): Promise<void> {
+   * Sign up
+   */
+  signUp(): void {
         // Do nothing if the form is invalid
         if (this.signUpForm.invalid) {
             return;
@@ -76,7 +76,8 @@ export class AuthSignUpComponent implements OnInit {
 
         // Sign up
     this._authService.signUp(this.signUpForm.value).subscribe({
-      next: () => this._router.navigateByUrl('/sign-in'), error: (res) => {
+        next: () => this._router.navigateByUrl('/sign-in'),
+        error: () => {
         this.signUpForm.enable();
 
         // Reset the form
@@ -90,7 +91,8 @@ export class AuthSignUpComponent implements OnInit {
 
         // Show the alert
         this.showAlert = true;
+        },
       },
-    });
-    }
+    );
+  }
 }
