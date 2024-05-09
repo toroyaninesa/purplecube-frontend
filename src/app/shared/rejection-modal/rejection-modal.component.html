@@ -2,7 +2,14 @@
   <div class="flex flex-col gap-2">
     <p class="title">Reject your candidate with AI 🚀</p>
     <p>Make use of GPT powered rejection messaging and adjust as needed! </p>
-    <textarea class="w-full textForm" matInput placeholder="Generating a message...">{{message}}</textarea>
+
+    <div class="flex items-start w-full gap-2">
+      <mat-form-field class="w-full" appearance="fill">
+        <input matInput class="" placeholder="i.e. Lack of Experience" [(ngModel)]="reason">
+      </mat-form-field>
+      <button mat-button class="primary w-full generate" (click)="requestRejectionMessage()">Generate a message</button>
+    </div>
+    <textarea class="w-full textForm" matInput placeholder="Generating a rejection message with AI...">{{message}}</textarea>
   </div>
   <div class="flex justify-between gap-2">
     <button mat-button class="w-full"  (click)="close()">Cancel</button>

@@ -1,7 +1,8 @@
 <div class="flex flex-col p-6 w-full gap-5">
     <ng-container *ngIf="application">
         <mat-stepper
-            [linear]="true"
+          #stepper
+            [linear]="false"
             [selectedIndex]= "findCurrentStageId()">
             <mat-step
                 *ngFor="let stage of application.job.jobStages"
@@ -55,17 +56,17 @@
                       </mat-stepper>
                     </ng-container>
                     <div class="flex gap-5 w-full" *ngIf="isAdminUser && !isTheApplicantHired()">
+                      <button mat-button
+                              class="primary-inverse w-full"
+                              (click)="rejectApplication()">
+                        Reject
+                      </button>
                       <button
                         mat-button
                         class="primary w-full"
                         *ngIf="determineNextAction()"
                         (click)="moveApplicationStatus(nextStage.orderNumber)">
                         Move to stage {{nextStage.stageTitle}}
-                      </button>
-                      <button mat-button
-                              class="primary-inverse w-full"
-                              (click)="rejectApplication()">
-                        Reject
                       </button>
                       <button mat-button
                               *ngIf="!nextStage"

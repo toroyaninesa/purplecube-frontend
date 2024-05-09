@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IApplication} from '../../models/application.model';
 import {JobsService} from '../../service/jobs.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,6 +8,7 @@ import { take} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {RejectionModalComponent} from '../rejection-modal/rejection-modal.component';
+import {MatStepper} from "@angular/material/stepper";
 
 @Component({
   selector: 'app-single-application',
@@ -15,6 +16,8 @@ import {RejectionModalComponent} from '../rejection-modal/rejection-modal.compon
   styleUrls: ['./application.component.scss']
 })
 export class ApplicationComponent implements OnInit {
+  @ViewChild('stepper')  stepper: MatStepper;
+
     @Input() application: IApplication;
     @Input() isAdminUser: boolean;
 
@@ -37,7 +40,7 @@ export class ApplicationComponent implements OnInit {
 
     findCurrentStageId(): number {
         const currentStageId = this.application?.currentStageId;
-        return currentStageId === 0 ? 0 : currentStageId - 1;
+        return currentStageId === 0 ? 0 : currentStageId;
     }
 
     determineNextAction(): JobStage {
@@ -60,8 +63,9 @@ export class ApplicationComponent implements OnInit {
 
     rejectApplication(): void {
       const dialog = this._dialog.open(RejectionModalComponent, {
-        height: '450px',
-        width: '650px'
+        height: '550px',
+        width: '650px',
+        data: {application: this.application}
       });
 
       dialog.afterClosed().pipe(take(1))
@@ -71,7 +75,8 @@ export class ApplicationComponent implements OnInit {
             .moveApplicationStatus(this.application.id, this.rejectionActionId, data.message)
             .pipe(take(1))
             .subscribe((result) => {
-              this.application.currentStageId = result.currentStageId;
+            this.application.currentStageId = result.currentStageId;
+            this.application.finalStageMessage = data.message;
             });
         }
       });

@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    gptAuthHeader: 'Bearer sk-proj-1RoQJBDfMK2jSiGBxoOiT3BlbkFJn6EMZLrSEMCVjEvTEzXv',
+    gptAuthHeader: 'Bearer //add your header',
     gptOrg: 'org-PlyG5a7nn6G4Lc4QOf023iPg',
     gptProject: 'proj_Jnal6ARTY6LzgfB50wdgwLtQ',
     baseURL: 'http://localhost:3000/',
