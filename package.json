@@ -17,7 +17,7 @@
     "dependencies": {
         "@angular/animations": "13.1.1",
         "@angular/cdk": "13.1.1",
-        "@angular/common": "13.1.1",
+        "@angular/common": "13.0.0",
         "@angular/compiler": "13.1.1",
         "@angular/core": "13.1.1",
         "@angular/forms": "13.1.1",
@@ -49,7 +49,7 @@
         "@angular-eslint/builder": "13.0.1",
         "@angular-eslint/eslint-plugin": "13.0.1",
         "@angular-eslint/eslint-plugin-template": "13.0.1",
-        "@angular-eslint/schematics": "13.0.1",
+        "@angular-eslint/schematics": "14.0.1",
         "@angular-eslint/template-parser": "13.0.1",
         "@angular/cli": "13.1.2",
         "@angular/compiler-cli": "13.1.1",
