@@ -58,7 +58,7 @@ export class AuthSignUpComponent implements OnInit {
     /**
      * Sign up
      */
-    signUp(): void {
+    async signUp(): Promise<void> {
         // Do nothing if the form is invalid
         if (this.signUpForm.invalid) {
             return;
@@ -71,27 +71,24 @@ export class AuthSignUpComponent implements OnInit {
         this.showAlert = false;
 
         // Sign up
-        this._authService.signUp(this.signUpForm.value).subscribe(
-            (response) => {
-                // Navigate to the confirmation required page
-                this._router.navigateByUrl( '/signed-in-redirect');
-            },
-            (response) => {
-                // Re-enable the form
-                this.signUpForm.enable();
+      try{
+        await this._authService.signUp(this.signUpForm.value);
+        this._router.navigateByUrl( '/signed-in-redirect');
+      } catch{
+        // Re-enable the form
+        this.signUpForm.enable();
 
-                // Reset the form
-                this.signUpNgForm.resetForm();
+        // Reset the form
+        this.signUpNgForm.resetForm();
 
-                // Set the alert
-                this.alert = {
-                    type: 'error',
-                    message: 'Something went wrong, please try again.',
-                };
+        // Set the alert
+        this.alert = {
+          type: 'error',
+          message: 'Something went wrong, please try again.',
+        };
 
-                // Show the alert
-                this.showAlert = true;
-            }
-        );
+        // Show the alert
+        this.showAlert = true;
+      }
     }
 }

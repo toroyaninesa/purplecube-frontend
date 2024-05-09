@@ -150,7 +150,7 @@ export class AuthService {
       email: string;
       password: string;
       role: IUserRole;
-    }): Observable<{ user: User; token: string }> {
+    }): Promise<{ user: User; token: string } | undefined> {
      const obs = this._httpClient.post<{ user: User; token: string}>(
         'http://localhost:3000/auth/register',
         user
@@ -167,7 +167,7 @@ export class AuthService {
 
        this._userRole = user.role;
      });
-      return obs;
+      return obs.toPromise();
     }
 
     /**
