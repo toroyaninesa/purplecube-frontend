@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, ReplaySubject, tap } from 'rxjs';
-import { User } from 'app/core/user/user.types';
+import { IUser } from 'app/models/user.model';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { IJob } from '../../models/job.model';
@@ -10,7 +10,7 @@ import { IJob } from '../../models/job.model';
     providedIn: 'root',
 })
 export class UserService {
-    private _user: ReplaySubject<User> = new ReplaySubject<User>(1);
+    private _user: ReplaySubject<IUser> = new ReplaySubject<IUser>(1);
     /**
      * Constructor
      */
@@ -25,12 +25,12 @@ export class UserService {
      *
      * @param value
      */
-    set user(value: User) {
+    set user(value: IUser) {
         // Store the value
         this._user.next(value);
     }
 
-    get user$(): Observable<User> {
+    get user$(): Observable<IUser> {
         return this._user.asObservable();
     }
 
@@ -41,8 +41,8 @@ export class UserService {
     /**
      * Get the current logged in user data
      */
-    get(): Observable<User> {
-        return this._httpClient.get<User>('api/common/user').pipe(
+    get(): Observable<IUser> {
+        return this._httpClient.get<IUser>('api/common/user').pipe(
             tap((user) => {
                 this._user.next(user);
             })
@@ -54,8 +54,8 @@ export class UserService {
      *
      * @param user
      */
-    update(user: User): Observable<any> {
-        return this._httpClient.patch<User>('api/common/user', { user }).pipe(
+    update(user: IUser): Observable<any> {
+        return this._httpClient.patch<IUser>('api/common/user', { user }).pipe(
             map((response) => {
                 this._user.next(response);
             })

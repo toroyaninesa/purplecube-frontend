@@ -1,5 +1,5 @@
 import { IsActiveMatchOptions } from '@angular/router';
-import { IUserRole } from '../../../app/models/user.model';
+import { IUserRole } from '../../../app/core/user/user.types';
 
 export interface FuseNavigationItem {
     role: IUserRole[];

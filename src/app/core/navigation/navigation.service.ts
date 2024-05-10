@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, ReplaySubject, tap } from 'rxjs';
 import { Navigation } from 'app/core/navigation/navigation.types';
-import { IUserRole } from '../../models/user.model';
+import { IUserRole } from '../user/user.types';
 
 @Injectable({
     providedIn: 'root',

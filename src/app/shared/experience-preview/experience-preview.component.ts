@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {IExperience} from '../../core/user/user.types';
+import {IExperience} from '../../models/user.model';
 
 @Component({
     selector: 'app-experience-preview',

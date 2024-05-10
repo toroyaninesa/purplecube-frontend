@@ -7,7 +7,7 @@ import {
     IJob,
 } from '../../../models/job.model';
 import { UserService } from '../../../core/user/user.service';
-import { User } from '../../../core/user/user.types';
+import { IUser } from '../../../models/user.model';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { PageEvent } from '@angular/material/paginator';
 import { NavigationService } from '../../../core/navigation/navigation.service';
@@ -20,7 +20,7 @@ import { NavigationService } from '../../../core/navigation/navigation.service';
 export class JobsComponent implements OnInit {
     jobs: IJob[] = [];
     count: number;
-    user: User;
+    user: IUser;
     employment = EmploymentTypeEnum;
     level = EmploymentLevelEnum;
     categories: ICategory[];
