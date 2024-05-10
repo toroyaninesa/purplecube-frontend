@@ -6,6 +6,7 @@ import { UserService } from 'app/core/user/user.service';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import {IUserRole} from '../user/user.types';
+import {IUser} from '../../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -149,8 +150,8 @@ export class AuthService {
       email: string;
       password: string;
       role: IUserRole;
-    }){
-     return this._httpClient.post(
+    }): Observable<IUser> {
+     return this._httpClient.post<IUser>(
         'http://localhost:3000/auth/register',
         user
       );

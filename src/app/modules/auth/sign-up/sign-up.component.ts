@@ -4,7 +4,8 @@ import {Router} from '@angular/router';
 import {fuseAnimations} from '@fuse/animations';
 import {FuseAlertType} from '@fuse/components/alert';
 import {AuthService} from 'app/core/auth/auth.service';
-import {IUserRole} from '../../../models/user.model';
+import {catchError, EMPTY, tap} from 'rxjs';
+import {IUserRole} from '../../../core/user/user.types';
 
 @Component({
     selector: 'auth-sign-up',
@@ -75,9 +76,9 @@ export class AuthSignUpComponent implements OnInit {
         this.showAlert = false;
 
         // Sign up
-    this._authService.signUp(this.signUpForm.value).subscribe({
-        next: () => this._router.navigateByUrl('/sign-in'),
-        error: () => {
+    this._authService.signUp(this.signUpForm.value).pipe(
+      tap(() => this._router.navigateByUrl('/sign-in'),
+        catchError(() => {
         this.signUpForm.enable();
 
         // Reset the form
@@ -91,8 +92,11 @@ export class AuthSignUpComponent implements OnInit {
 
         // Show the alert
         this.showAlert = true;
-        },
-      },
-    );
+            return EMPTY; // Or any other observable you want to return
+          },
+        )
+      ),
+    ).subscribe();
+
   }
 }
