@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import {CreateExperience,IExperience} from '../core/user/user.types';
+import {ICreateExperience,IExperience} from '../models/user.model';
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +11,7 @@ import {CreateExperience,IExperience} from '../core/user/user.types';
 export class ProfileService {
     constructor(private _httpClient: HttpClient) {}
 
-    saveUserProfile(experienceList: CreateExperience[]): Observable<IExperience[]> {
+    saveUserProfile(experienceList: ICreateExperience[]): Observable<IExperience[]> {
         const url = Location.joinWithSlash(
             environment.baseURL || '',
             '/user/experience/'

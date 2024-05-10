@@ -3,7 +3,7 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { HomeDataResolver } from './resolver/HomeDataResolver';
-import { IUserRole } from './models/user.model';
+import { IUserRole } from './core/user/user.types';
 
 export const appRoutes: Route[] = [
     { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'jobs' },

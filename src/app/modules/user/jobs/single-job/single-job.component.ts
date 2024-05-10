@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JobsService } from '../../../../service/jobs.service';
 import { IJob } from '../../../../models/job.model';
 import { UserService } from '../../../../core/user/user.service';
-import { User } from '../../../../core/user/user.types';
+import { IUser } from '../../../../models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ApplyComponent } from '../apply/apply.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SingleJobComponent implements OnInit {
     jobId: number;
     job: IJob;
-    user: User;
+    user: IUser;
 
     constructor(
         private _route: ActivatedRoute,

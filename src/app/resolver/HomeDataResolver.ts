@@ -4,7 +4,7 @@ import {
     Resolve,
     RouterStateSnapshot,
 } from '@angular/router';
-import { User } from '../core/user/user.types';
+import { IUser } from '../models/user.model';
 import { UserService } from '../core/user/user.service';
 import { AuthService } from '../core/auth/auth.service';
 import { FuseSplashScreenService } from '../../@fuse/services/splash-screen';
@@ -13,7 +13,7 @@ import { catchError, Observable, of, tap } from 'rxjs';
 @Injectable({
     providedIn: 'root',
 })
-export class HomeDataResolver implements Resolve<User> {
+export class HomeDataResolver implements Resolve<IUser> {
     /**
      * Constructor
      */
@@ -36,7 +36,7 @@ export class HomeDataResolver implements Resolve<User> {
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
-    ): Observable<User> | Promise<User> | User {
+    ): Observable<IUser> | Promise<IUser> | IUser {
         this._splashService.show();
         if (this._authService.accessToken) {
             return this._authService.signInUsingToken().pipe(

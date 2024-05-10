@@ -12,7 +12,7 @@ import {
 } from '@angular/router';
 import { Observable, of, switchMap, tap } from 'rxjs';
 import { AuthService } from 'app/core/auth/auth.service';
-import { IUserRole } from '../../../models/user.model';
+import { IUserRole } from '../../user/user.types';
 
 @Injectable({
     providedIn: 'root',
