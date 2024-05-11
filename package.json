@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "start": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng serve",
-    "build": "ng build --prod",
+    "build": "ng build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
