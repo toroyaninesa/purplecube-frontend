@@ -77,4 +77,14 @@ export class UserService {
         );
         return this._httpClient.post(url, null);
     }
+
+    updateUserInfo(user: IUser): Observable<IUser> {
+      const url = Location.joinWithSlash(
+        environment.baseURL || '',
+        '/user'
+      );
+      this.user = user;
+      return this._httpClient.put<IUser>(url, user);
+
+    }
 }
