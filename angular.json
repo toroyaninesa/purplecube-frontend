@@ -12,7 +12,7 @@
     },
     "newProjectRoot": "projects",
     "projects": {
-        "fuse": {
+        "purplecube": {
             "projectType": "application",
             "schematics": {
                 "@schematics/angular:component": {
