@@ -4,7 +4,7 @@ const app = express();
 const fs = require('fs');
 
 let mainFileName = '';
-fs.readdirSync('dist/main').forEach(file => {
+fs.readdirSync('dist/purplecube').forEach(file => {
   if (file.startsWith('main.')) {
     mainFileName = file;
   }
