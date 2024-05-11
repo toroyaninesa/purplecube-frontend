@@ -47,10 +47,9 @@ export class RejectionModalComponent implements OnInit {
       'temperature': 0.7
     };
 
+    console.log(environment);
     return this.httpClient.post(this.url, body,
       { headers : {
-          // eslint-disable-next-line @typescript-eslint/naming-convention
-          // @ts-ignore
           // eslint-disable-next-line @typescript-eslint/naming-convention
           'Authorization': environment.gptAuthHeader,
           // eslint-disable-next-line @typescript-eslint/naming-convention
