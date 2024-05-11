@@ -16,7 +16,7 @@ const result = data.replace(/gptAuthHeaderReplace/g, "Bearer " + process.env.gpt
 fs.writeFileSync(mainFilePath, result, 'utf8');
 
 app.use(express.static(__dirname + '/dist/purplecube'));
-app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname+
-    '/dist/purplecube/index.html'));});
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(rootPath, 'index.html'));
+});
 app.listen(process.env.PORT || 8080);
