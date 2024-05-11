@@ -4,12 +4,14 @@ const app = express();
 const fs = require('fs');
 
 let mainFileName = '';
-fs.readdirSync('dist/purplecube').forEach(file => {
+const rootPath = __dirname + '/dist/purplecube';
+fs.readdirSync(rootPath).forEach(file => {
   if (file.startsWith('main.')) {
     mainFileName = file;
   }
 });
-const mainFilePath = 'dist/purplecube/' + mainFileName;
+const mainFilePath = path.join(rootPath, mainFileName);
+console.log(process.env.gptAuthHeader);
 fs.readFile(mainFilePath, 'utf8', function (err,data) {
   if (err) {
     return console.log(err);
