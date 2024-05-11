@@ -11,17 +11,9 @@ fs.readdirSync(rootPath).forEach(file => {
   }
 });
 const mainFilePath = path.join(rootPath, mainFileName);
-console.log(process.env.gptAuthHeader);
-fs.readFile(mainFilePath, 'utf8', function (err,data) {
-  if (err) {
-    return console.log(err);
-  }
-  const result = data.replace(/gptAuthHeader:"undefined"/g, `gptAuthHeader:"${process.env.gptAuthHeader}"`);
-
-  fs.writeFile(mainFilePath, result, 'utf8', function (err) {
-    if (err) return console.log(err);
-  });
-});
+const data = fs.readFileSync(mainFilePath, 'utf8');
+const result = data.replace(/gptAuthHeaderReplace/g, process.env.gptAuthHeader);
+fs.writeFileSync(mainFilePath, result, 'utf8');
 
 app.use(express.static(__dirname + '/dist/purplecube'));
 app.get('/*', function(req,res) {
