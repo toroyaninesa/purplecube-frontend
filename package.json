@@ -1,5 +1,5 @@
 {
-  "name": "@fuse/starter",
+  "name": "purplecube",
   "version": "14.1.1",
   "description": "Purplecube",
   "author": "https://themeforest.net/user/srcn",
@@ -7,8 +7,8 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng serve",
+    "build": "ng build --prod",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
