@@ -9,7 +9,7 @@ fs.readdirSync('dist/purplecube').forEach(file => {
     mainFileName = file;
   }
 });
-const mainFilePath = 'dist/main/' + mainFileName;
+const mainFilePath = 'dist/purplecube/' + mainFileName;
 fs.readFile(mainFilePath, 'utf8', function (err,data) {
   if (err) {
     return console.log(err);
