@@ -8,7 +8,7 @@ import {
 } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
-import { User } from 'app/core/user/user.types';
+import { IUser } from 'app/models/user.model';
 import { UserService } from 'app/core/user/user.service';
 
 @Component({
@@ -19,7 +19,7 @@ import { UserService } from 'app/core/user/user.service';
 export class ClassyLayoutComponent implements OnInit, OnDestroy {
     isScreenSmall: boolean;
     navigation: Navigation;
-    user: User;
+    user: IUser;
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     page: string;
 
@@ -61,7 +61,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this._userService.user$
             .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: User) => {
+            .subscribe((user: IUser) => {
                 this.user = user;
             });
 
