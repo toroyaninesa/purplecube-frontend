@@ -12,6 +12,7 @@ export const environment = {
     gptAuthHeader: '${process.env.gptAuthHeader}'
 };
 `;
+console.log(process.env.gptAuthHeader);
 fs.writeFile("src/environments/environment.prod.ts", envObjectStr, function(err) {
   if(err) {
     return console.log(err);
