@@ -1,2 +1,91 @@
-<p>my-company works!</p>
+<div
+  class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0"
+>
 
+  <div class="w-full max-w-200 sm:w-200 mx-auto sm:mx-0">
+
+    <!-- Alert -->
+    <fuse-alert
+      *ngIf="showAlert"
+      [@shake]="alert.type === 'error'"
+      [appearance]="'outline'"
+      [showIcon]="false"
+      [type]="alert.type"
+      class="mt-8 -mb-4"
+    >
+      {{ alert.message }}
+    </fuse-alert>
+    <ng-container *ngIf=companyForm>
+      <!-- Company Creat form -->
+      <form [formGroup]="companyForm" class="mt-8">
+        <!-- Name field -->
+        <mat-form-field class="w-full">
+          <mat-label>Name</mat-label>
+          <input [formControlName]="'name'" id="name" matInput/>
+          <mat-error
+            *ngIf="companyForm.get('name').hasError('required')"
+          >
+            Full name is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Email field -->
+        <mat-form-field class="w-full">
+          <mat-label>Email address</mat-label>
+          <input [formControlName]="'email'" id="email" matInput/>
+          <mat-error
+            *ngIf="companyForm.get('email').hasError('required')"
+          >
+            Email address is required
+          </mat-error>
+          <mat-error
+            *ngIf="companyForm.get('email').hasError('email')"
+          >
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Description field -->
+        <mat-form-field class="w-full">
+          <mat-label>Description</mat-label>
+          <textarea [formControlName]="'description'" id="description" matInput rows="5"></textarea>
+          <mat-error
+            *ngIf="companyForm.get('description').hasError('required')"
+          >
+            Full name is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Image field -->
+        <mat-form-field class="w-full">
+          <mat-label>Image url</mat-label>
+          <input [formControlName]="'image_url'" id="image_url" matInput/>
+        </mat-form-field>
+
+        <img class="logo" src="{{companyForm.get('image_url').value}}"  alt="company logo"/>
+
+
+        <!-- Submit button -->
+        <button
+            (click)="isCompanyAvailable?onUpdate(): onCreate()"
+          [color]="'primary'"
+          [disabled]="companyForm.disabled"
+          class="fuse-mat-button-large w-full mt-6"
+          mat-flat-button
+        >
+                    <span *ngIf="!companyForm.disabled && !isCompanyAvailable">
+                        Create your company profile
+                    </span>
+                    <span *ngIf="!companyForm.disabled && isCompanyAvailable">
+                        Update your company
+                    </span>
+          <mat-progress-spinner
+            *ngIf="companyForm.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"
+          ></mat-progress-spinner>
+        </button>
+      </form>
+    </ng-container>
+  </div>
+</div>

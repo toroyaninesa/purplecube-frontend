@@ -1,5 +1,6 @@
 import { IJob } from './job.model';
 import { IUserRole } from '../core/user/user.types';
+import {ICompany} from "./company.model";
 
 export interface IUser {
     id: string;
@@ -8,6 +9,7 @@ export interface IUser {
     email: string;
     avatar?: string;
     status?: string;
+    company?: ICompany;
     saved_jobs: IJob[];
     role: IUserRole;
     experience: IExperience[];
