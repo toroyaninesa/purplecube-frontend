@@ -3,21 +3,22 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 
-const envObjectStr = `
-export const environment = {
-    production: true,
-    baseURL: 'https://purplecube-backend-production.up.railway.app/',
-    gptOrg: 'org-PlyG5a7nn6G4Lc4QOf023iPg',
-    gptProject: 'proj_Jnal6ARTY6LzgfB50wdgwLtQ',
-    gptAuthHeader: '${process.env.gptAuthHeader}'
-};
-`;
-
-fs.writeFileSync("src/environments/environment.prod.ts", envObjectStr, function(err) {
-  if(err) {
+let mainFileName = '';
+fs.readdirSync('dist/main').forEach(file => {
+  if (file.startsWith('main.')) {
+    mainFileName = file;
+  }
+});
+const mainFilePath = 'dist/main/' + mainFileName;
+fs.readFile(mainFilePath, 'utf8', function (err,data) {
+  if (err) {
     return console.log(err);
   }
-  console.log("The file was saved!");
+  const result = data.replace(/gptAuthHeader:"undefined"/g, `gptAuthHeader:"${process.env.gptAuthHeader}"`);
+
+  fs.writeFile(mainFilePath, result, 'utf8', function (err) {
+    if (err) return console.log(err);
+  });
 });
 
 app.use(express.static(__dirname + '/dist/purplecube'));
