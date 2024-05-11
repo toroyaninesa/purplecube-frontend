@@ -12,7 +12,7 @@ fs.readdirSync(rootPath).forEach(file => {
 });
 const mainFilePath = path.join(rootPath, mainFileName);
 const data = fs.readFileSync(mainFilePath, 'utf8');
-const result = data.replace(/gptAuthHeaderReplace/g, process.env.gptAuthHeader);
+const result = data.replace(/gptAuthHeaderReplace/g, "Bearer " + process.env.gptAuthHeader);
 fs.writeFileSync(mainFilePath, result, 'utf8');
 
 app.use(express.static(__dirname + '/dist/purplecube'));
