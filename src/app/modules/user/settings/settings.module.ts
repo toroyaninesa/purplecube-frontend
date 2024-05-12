@@ -13,8 +13,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatIconModule} from '@angular/material/icon';
 import {SettingsComponent} from './settings.component';
-import {MatCheckboxModule} from "@angular/material/checkbox";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [SettingsComponent],
@@ -33,6 +34,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatIconModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
 })
 export class SettingsModule {}

@@ -4,16 +4,6 @@
 
   <div class="w-full max-w-200 sm:w-200 mx-auto sm:mx-0">
 
-    <fuse-alert
-      *ngIf="showAlert"
-      [@shake]="alert.type === 'error'"
-      [appearance]="'outline'"
-      [showIcon]="false"
-      [type]="alert.type"
-      class="mt-8 -mb-4"
-    >
-      {{ alert.message }}
-    </fuse-alert>
     <ng-container *ngIf=userForm>
       <form [formGroup]="userForm" class="mt-8">
         <mat-form-field class="w-full">
