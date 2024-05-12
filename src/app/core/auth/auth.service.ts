@@ -151,8 +151,9 @@ export class AuthService {
       password: string;
       role: IUserRole;
     }): Observable<IUser> {
-     return this._httpClient.post<IUser>(
-        'http://localhost:3000/auth/register',
+      const url = Location.joinWithSlash(environment.baseURL || '', '/auth/register/');
+      return this._httpClient.post<IUser>(
+        url,
         user
       );
     }
