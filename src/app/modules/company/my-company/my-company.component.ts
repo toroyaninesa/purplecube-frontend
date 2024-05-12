@@ -2,11 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavigationService} from '../../../core/navigation/navigation.service';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms'; // Updated import
 import {CompanyService} from '../../../service/company.service';
-import {FuseAlertType} from '../../../../@fuse/components/alert';
 import {UserService} from '../../../core/user/user.service';
-import {first, tap} from 'rxjs';
+import {first} from 'rxjs';
 import {IUser} from '../../../models/user.model';
 import {ICompany} from '../../../models/company.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-my-company',
@@ -16,11 +16,6 @@ import {ICompany} from '../../../models/company.model';
 export class MyCompanyComponent implements OnInit {
   @ViewChild('companyNgForm') companyNgForm: NgForm; // Updated ViewChild import
   companyForm: FormGroup; // Updated form group import
-  alert: { type: FuseAlertType; message: string } = {
-    type: 'success',
-    message: '',
-  };
-  showAlert: boolean = false;
   isCompanyAvailable: boolean = false;
   private _company: ICompany;
 
@@ -29,6 +24,7 @@ export class MyCompanyComponent implements OnInit {
     private _userService: UserService,
     private companyService: CompanyService,
     private _formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
   }
 
@@ -41,7 +37,7 @@ export class MyCompanyComponent implements OnInit {
       image_url: [''],
     });
 
-    this._userService.user$.pipe(tap((user: IUser) => {
+    this._userService.user$.pipe(first()).subscribe((user: IUser) => {
       this._company =user.company;
       this.companyForm.setValue({
         name: user.company.name,
@@ -50,7 +46,7 @@ export class MyCompanyComponent implements OnInit {
         image_url: user.company.image_url,
       });
       this.isCompanyAvailable = true;
-    })).subscribe();
+    });
     this._nav.page = 'My Company';
   }
 
@@ -65,18 +61,19 @@ export class MyCompanyComponent implements OnInit {
         this._company = result;
         this.companyForm.enable();
         this.isCompanyAvailable = true;
-        this._userService.user$.pipe(first()).subscribe((user: IUser) => {
-          this._userService.user = {...user, company: result};
-        });
+        this._userService.company = result;
       },
       error: () => {
         this.companyForm.enable();
         this.companyNgForm.resetForm();
-        this.alert = {
-          type: 'error',
-          message: 'Something went wrong, please try again.',
-        };
-        this.showAlert = true;
+        this._snackBar.open(
+          'Something went wrong, please try again.',
+          'Close',
+          {
+            panelClass: ['error-snackbar'],
+            duration: 3000,
+          },
+        );
       },
     });
   }
@@ -92,18 +89,19 @@ export class MyCompanyComponent implements OnInit {
         this._company = result;
         this.companyForm.enable();
         this.isCompanyAvailable = true;
-        this._userService.user$.pipe(first()).subscribe((user: IUser) => {
-          this._userService.user = {...user, company: result};
-        });
+        this._userService.company = result;
       },
       error: () => {
         this.companyForm.enable();
         this.companyNgForm.resetForm();
-        this.alert = {
-          type: 'error',
-          message: 'Something went wrong, please try again.',
-        };
-        this.showAlert = true;
+        this._snackBar.open(
+          'Something went wrong, please try again.',
+          'Close',
+          {
+            panelClass: ['error-snackbar'],
+            duration: 3000,
+          },
+        );
       },
     });
   }

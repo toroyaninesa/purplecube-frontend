@@ -10,6 +10,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatInputModule} from "@angular/material/input";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {SharedModule} from "../../../shared/shared.module";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const myCompanyRoutes: Route[] = [
     {
@@ -22,6 +23,7 @@ const myCompanyRoutes: Route[] = [
 @NgModule({
     declarations: [MyCompanyComponent],
     imports: [
+      MatSnackBarModule,
       CommonModule,
       RouterModule.forChild(myCompanyRoutes),
       FuseAlertModule,

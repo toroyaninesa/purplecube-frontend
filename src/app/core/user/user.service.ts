@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, ReplaySubject, tap } from 'rxjs';
+import { map, Observable, ReplaySubject, take, tap} from 'rxjs';
 import { IUser } from 'app/models/user.model';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import { IJob } from '../../models/job.model';
+import { ICompany} from '../../models/company.model';
 
 @Injectable({
     providedIn: 'root',
@@ -28,6 +29,11 @@ export class UserService {
     set user(value: IUser) {
         // Store the value
         this._user.next(value);
+    }
+    set company(value: ICompany){
+      this._user.pipe(take(1)).subscribe(
+        value1 => this.user = {...value1,company:value}
+      );
     }
 
     get user$(): Observable<IUser> {
