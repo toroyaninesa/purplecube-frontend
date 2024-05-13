@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationService} from '../../../core/navigation/navigation.service';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms'; // Updated import
+import {FormBuilder, FormGroup, Validators} from '@angular/forms'; // Updated import
 import {CompanyService} from '../../../service/company.service';
 import {UserService} from '../../../core/user/user.service';
-import {first} from 'rxjs';
+import {catchError, first} from 'rxjs';
 import {IUser} from '../../../models/user.model';
 import {ICompany} from '../../../models/company.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -14,8 +14,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./my-company.component.scss'],
 })
 export class MyCompanyComponent implements OnInit {
-  @ViewChild('companyNgForm') companyNgForm: NgForm; // Updated ViewChild import
-  companyForm: FormGroup; // Updated form group import
+  companyForm: FormGroup;
   isCompanyAvailable: boolean = false;
   private _company: ICompany;
 
@@ -65,7 +64,6 @@ export class MyCompanyComponent implements OnInit {
       },
       error: () => {
         this.companyForm.enable();
-        this.companyNgForm.resetForm();
         this._snackBar.open(
           'Something went wrong, please try again.',
           'Close',
@@ -84,16 +82,9 @@ export class MyCompanyComponent implements OnInit {
     }
     this.companyForm.disable();
     const company: ICompany = {...this._company, ...this.companyForm.value};
-    this.companyService.updateCompany(company).subscribe({
-      next: (result: ICompany) => {
-        this._company = result;
+    this.companyService.updateCompany(company).pipe(
+      catchError((err) => {
         this.companyForm.enable();
-        this.isCompanyAvailable = true;
-        this._userService.company = result;
-      },
-      error: () => {
-        this.companyForm.enable();
-        this.companyNgForm.resetForm();
         this._snackBar.open(
           'Something went wrong, please try again.',
           'Close',
@@ -102,8 +93,16 @@ export class MyCompanyComponent implements OnInit {
             duration: 3000,
           },
         );
+          return err;
+        },
+      ),
+    ).subscribe((result: ICompany) => {
+        this._company = result;
+        this.companyForm.enable();
+        this.isCompanyAvailable = true;
+        this._userService.company = result;
       },
-    });
+    );
   }
 
 }
