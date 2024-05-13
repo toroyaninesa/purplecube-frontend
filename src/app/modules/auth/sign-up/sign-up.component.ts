@@ -77,25 +77,21 @@ export class AuthSignUpComponent implements OnInit {
 
         // Sign up
     this._authService.signUp(this.signUpForm.value).pipe(
-      tap(() => this._router.navigateByUrl('/sign-in'),
-        catchError(() => {
+      tap(() => this._router.navigateByUrl('/sign-in')),
+      catchError(() => {
         this.signUpForm.enable();
 
-        // Reset the form
         this.signUpNgForm.resetForm();
 
-        // Set the alert
         this.alert = {
           type: 'error',
           message: 'Something went wrong, please try again.',
         };
 
-        // Show the alert
         this.showAlert = true;
-            return EMPTY; // Or any other observable you want to return
-          },
-        )
-      ),
+
+        return EMPTY;
+      })
     ).subscribe();
 
   }
