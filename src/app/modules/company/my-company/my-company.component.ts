@@ -54,26 +54,28 @@ export class MyCompanyComponent implements OnInit {
       return;
     }
     this.companyForm.disable();
-
-    this.companyService.createCompany({...this.companyForm.value}).subscribe({
-      next: (result) => {
+    const company: ICompany = {...this._company, ...this.companyForm.value};
+    this.companyService.createCompany(company).pipe(
+      catchError((err) => {
+          this.companyForm.enable();
+          this._snackBar.open(
+            'Something went wrong, please try again.',
+            'Close',
+            {
+              panelClass: ['error-snackbar'],
+              duration: 3000,
+            },
+          );
+          return err;
+        },
+      ),
+    ).subscribe((result: ICompany) => {
         this._company = result;
         this.companyForm.enable();
         this.isCompanyAvailable = true;
         this._userService.company = result;
       },
-      error: () => {
-        this.companyForm.enable();
-        this._snackBar.open(
-          'Something went wrong, please try again.',
-          'Close',
-          {
-            panelClass: ['error-snackbar'],
-            duration: 3000,
-          },
-        );
-      },
-    });
+    );
   }
 
   onUpdate(): void {
