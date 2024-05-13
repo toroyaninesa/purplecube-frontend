@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationService} from '../../../core/navigation/navigation.service';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/user/user.service';
 import {IUser} from '../../../models/user.model';
-import {take, tap} from 'rxjs';
+import {catchError, take} from 'rxjs';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -11,7 +11,6 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './settings.component.html',
 })
 export class SettingsComponent implements OnInit {
-  @ViewChild('userNgForm') userNgForm: NgForm;
   userForm: FormGroup;
   user: IUser;
 
@@ -48,23 +47,20 @@ export class SettingsComponent implements OnInit {
     }
     this.userForm.disable();
     this._userService.updateUserInfo({...this.user, ...this.userForm.value}).pipe(
-      tap(
-        () => this.userForm.enable(),
-        () => {
-          this._snackBar.open(
-            'Something went wrong, please try again.',
-            'Close',
-            {
-              panelClass: ['error-snackbar'],
-              duration: 3000,
-            },
-          );
-          this.userForm.enable();
-          this.userNgForm.resetForm();
-        },
-      ),
-    ).subscribe();
-
+      take(1),
+      catchError((err) => {
+        this._snackBar.open(
+          'Something went wrong, please try again.',
+          'Close',
+          {
+            panelClass: ['error-snackbar'],
+            duration: 3000,
+          },
+        );
+        this.userForm.enable();
+        return err;
+      })
+    ).subscribe(() => this.userForm.enable());
   }
 
 }
