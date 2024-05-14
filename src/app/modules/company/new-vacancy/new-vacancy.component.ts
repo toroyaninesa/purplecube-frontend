@@ -1,18 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { EventObj } from '@tinymce/tinymce-angular/editor/Events';
-import { getTinymce } from '@tinymce/tinymce-angular/TinyMCE';
-import { JobsService } from '../../../service/jobs.service';
-import { algo } from 'crypto-js';
-import {
-    EmploymentLevelEnum,
-    EmploymentTypeEnum,
-    ICategory,
-    IJob,
-} from '../../../models/job.model';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
-import { NavigationService } from '../../../core/navigation/navigation.service';
+import {Component, OnInit} from '@angular/core';
+import {JobsService} from '../../../service/jobs.service';
+import {EmploymentLevelEnum, EmploymentTypeEnum, ICategory, IJob} from '../../../models/job.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormControl, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {NavigationService} from '../../../core/navigation/navigation.service';
 
 @Component({
     selector: 'app-new-vacancy',
@@ -22,14 +13,18 @@ import { NavigationService } from '../../../core/navigation/navigation.service';
 export class NewVacancyComponent implements OnInit {
     description: any;
     title: string;
-    maxApplications: number = 10;
     employment = EmploymentTypeEnum;
     level = EmploymentLevelEnum;
-    selectedEmployment: EmploymentTypeEnum;
-    selectedLevel: EmploymentLevelEnum;
     categories: ICategory[];
-    selectedCats: number[];
-    newJob = this._builder.group({
+  jobStages: UntypedFormGroup[] = [this._builder.group(
+    {
+        stageTitle:new FormControl('', [Validators.required]),
+        stagePrefix: new FormControl('', [Validators.required]),
+        stageMessage: new FormControl('', [Validators.required]),
+      },
+    ),
+  ];
+  newJob = this._builder.group({
         job: this._builder.group({
             title: ['', Validators.required],
             description: ['', Validators.required],
@@ -54,10 +49,30 @@ export class NewVacancyComponent implements OnInit {
         });
     }
 
-    createJob(): void {
-        if (this.newJob.valid) {
-            this._jobService
-                .createJob(this.newJob.getRawValue())
+  onAddStage(): void {
+    this.jobStages.push(
+      this._builder.group(
+        {
+          stageTitle: new FormControl('', [Validators.required]),
+          stagePrefix: new FormControl('', [Validators.required]),
+          stageMessage: new FormControl('', [Validators.required]),
+        },
+      ),
+    );
+  }
+
+  createJob(): void {
+    if (this.newJob.invalid && this.jobStages.some(value => value.invalid)) {
+      return;
+    }
+
+    this._jobService
+      .createJob({
+        ...this.newJob.getRawValue(), jobStages: this.jobStages.map((stage, index: number) => ({
+          ...stage.getRawValue(),
+          orderNumber: index,
+        }))
+      })
                 .subscribe((res: IJob) => {
                     if (res.id) {
                         this._bar.open(
@@ -71,8 +86,15 @@ export class NewVacancyComponent implements OnInit {
                             }
                         );
                         this.newJob.reset();
+                      this.jobStages = [this._builder.group(
+                        [{
+                          stageTitle: ['', Validators.required],
+                          stagePrefix: ['', Validators.required],
+                          stageMessage: ['', Validators.required],
+                        }]
+                      )];
                     }
                 });
-        }
-    }
+
+  }
 }
