@@ -1,3 +1,4 @@
+
 export interface ICompany {
     id: number;
     email: string;
@@ -5,3 +6,13 @@ export interface ICompany {
     description: string;
     image_url: string;
 }
+
+
+
+export class ICreateCompanyDto {
+  email: string;
+  name: string;
+  description?: string;
+  image_url?: string;
+}
+
