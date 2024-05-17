@@ -123,6 +123,13 @@ export const appRoutes: Route[] = [
                         'app/modules/user/profile/profile.module'
                         ).then((m) => m.ProfileModule),
             },
+          {
+            path: 'settings',
+            loadChildren: () =>
+              import(
+                'app/modules/user/settings/settings.module'
+                ).then((m) => m.SettingsModule),
+          },
         ],
     },
     {
