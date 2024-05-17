@@ -41,14 +41,25 @@
             <form class="mt-8" [formGroup]="signUpForm">
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                  <mat-label>Name</mat-label>
                     <input id="name" matInput [formControlName]="'name'" />
                     <mat-error
                         *ngIf="signUpForm.get('name').hasError('required')"
                     >
-                        Full name is required
+                      First name is required
                     </mat-error>
                 </mat-form-field>
+
+              <!-- Surname field -->
+              <mat-form-field class="w-full">
+                <mat-label>Surname</mat-label>
+                <input [formControlName]="'surname'" id="surname" matInput/>
+                <mat-error
+                  *ngIf="signUpForm.get('surname').hasError('required')"
+                >
+                  Surname is required
+                </mat-error>
+              </mat-form-field>
 
                 <!-- Email field -->
                 <mat-form-field class="w-full">
@@ -99,16 +110,14 @@
                     </button>
                     <mat-error> Password is required </mat-error>
                 </mat-form-field>
-
-                <!-- Company field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
-                    <input
-                        id="company-confirm"
-                        matInput
-                        [formControlName]="'company'"
-                    />
-                </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label>Role</mat-label>
+                <mat-select [formControlName]="'role'" id="role">
+                  <mat-option *ngFor="let role of roles"
+                              [value]="role">{{ roleLabel(role) }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
                 <!-- ToS and PP -->
                 <div class="inline-flex items-end w-full mt-1.5">

@@ -6,6 +6,7 @@ import { UserService } from 'app/core/user/user.service';
 import { Location } from '@angular/common';
 import { environment } from '../../../environments/environment';
 import {IUserRole} from '../user/user.types';
+import {IUser} from '../../models/user.model';
 
 @Injectable()
 export class AuthService {
@@ -24,13 +25,13 @@ export class AuthService {
     /**
      * Setter & getter for access token
      */
+    get accessToken(): string {
+      return localStorage.getItem('accessToken') ?? '';
+    }
     set accessToken(token: string) {
         localStorage.setItem('accessToken', token);
     }
 
-    get accessToken(): string {
-        return localStorage.getItem('accessToken') ?? '';
-    }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
@@ -144,14 +145,17 @@ export class AuthService {
      * @param user
      */
     signUp(user: {
-        name: string;
-        email: string;
-        password: string;
-    }): Observable<any> {
-        return this._httpClient.post(
-            'http://localhost:3000/auth/register',
-            user
-        );
+      name: string;
+      surname: string;
+      email: string;
+      password: string;
+      role: IUserRole;
+    }): Observable<IUser> {
+      const url = Location.joinWithSlash(environment.baseURL || '', '/auth/register/');
+      return this._httpClient.post<IUser>(
+        url,
+        user
+      );
     }
 
     /**

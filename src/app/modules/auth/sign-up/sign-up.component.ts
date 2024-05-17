@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { fuseAnimations } from '@fuse/animations';
-import { FuseAlertType } from '@fuse/components/alert';
-import { AuthService } from 'app/core/auth/auth.service';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {NgForm, UntypedFormBuilder, UntypedFormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {fuseAnimations} from '@fuse/animations';
+import {FuseAlertType} from '@fuse/components/alert';
+import {AuthService} from 'app/core/auth/auth.service';
+import {catchError, EMPTY, tap} from 'rxjs';
+import {IUserRole} from '../../../core/user/user.types';
 
 @Component({
     selector: 'auth-sign-up',
@@ -20,6 +22,7 @@ export class AuthSignUpComponent implements OnInit {
     };
     signUpForm: UntypedFormGroup;
     showAlert: boolean = false;
+    roles = Object.values(IUserRole);
 
     /**
      * Constructor
@@ -41,9 +44,10 @@ export class AuthSignUpComponent implements OnInit {
         // Create the form
         this.signUpForm = this._formBuilder.group({
             name: ['', Validators.required],
+            surname: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
-            company: [''],
+            role:[IUserRole.USER,Validators.required],
             agreements: ['', Validators.requiredTrue],
         });
     }
@@ -52,10 +56,14 @@ export class AuthSignUpComponent implements OnInit {
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
 
-    /**
-     * Sign up
-     */
-    signUp(): void {
+  roleLabel(role: string): string {
+    return role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
+  }
+
+  /**
+   * Sign up
+   */
+  signUp(): void {
         // Do nothing if the form is invalid
         if (this.signUpForm.invalid) {
             return;
@@ -68,27 +76,23 @@ export class AuthSignUpComponent implements OnInit {
         this.showAlert = false;
 
         // Sign up
-        this._authService.signUp(this.signUpForm.value).subscribe(
-            (response) => {
-                // Navigate to the confirmation required page
-                this._router.navigateByUrl('/sign-in');
-            },
-            (response) => {
-                // Re-enable the form
-                this.signUpForm.enable();
+    this._authService.signUp(this.signUpForm.value).pipe(
+      tap(() => this._router.navigateByUrl('/sign-in')),
+      catchError(() => {
+        this.signUpForm.enable();
 
-                // Reset the form
-                this.signUpNgForm.resetForm();
+        this.signUpNgForm.resetForm();
 
-                // Set the alert
-                this.alert = {
-                    type: 'error',
-                    message: 'Something went wrong, please try again.',
-                };
+        this.alert = {
+          type: 'error',
+          message: 'Something went wrong, please try again.',
+        };
 
-                // Show the alert
-                this.showAlert = true;
-            }
-        );
-    }
+        this.showAlert = true;
+
+        return EMPTY;
+      })
+    ).subscribe();
+
+  }
 }
