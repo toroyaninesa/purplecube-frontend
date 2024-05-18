@@ -17,11 +17,8 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
         'id',
         'applicant',
         'email',
-        'hired',
-        'status',
         'job',
-        'napplicants',
-      'similarity',
+        'similarity',
     ];
     // @ts-ignore
     dataSource: MatTableDataSource<IApplication>;
@@ -55,27 +52,22 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
             const id = applicant.id;
             if (similarityScores.hasOwnProperty(id)) {
               applicant.similarityScore =similarityScores[id].score;
-            } else {
-              applicant.similarityScore = NaN;
             }
           });
           this.dataSource = new MatTableDataSource(this.applicants);
           this.dataSource.paginator = this.paginator;
-        },
-        (error) => {
-          // Handle error if needed
-          console.error('Error fetching similarity scores:', error);
         }
       );
     });
   }
 
-  convertToPercentage(score: number|null): string {
+  convertToPercentage(score: number | null | undefined): string {
     if (typeof score === 'number') {
       return Math.round(score * 100) + '%';
     } else {
       return 'N/A';
     }
   }
+
 
 }
