@@ -17,7 +17,6 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
         'id',
         'applicant',
         'email',
-        'status',
         'job',
         'similarity',
     ];
@@ -26,7 +25,6 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     applicants: IApplication[];
-    isLoading: boolean = true;
 
     constructor(
         private _jobService: JobsService,
@@ -54,16 +52,10 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
             const id = applicant.id;
             if (similarityScores.hasOwnProperty(id)) {
               applicant.similarityScore =similarityScores[id].score;
-            } else {
-              applicant.similarityScore = NaN;
             }
           });
           this.dataSource = new MatTableDataSource(this.applicants);
           this.dataSource.paginator = this.paginator;
-          this.isLoading = false;
-        },
-        () => {
-          this.isLoading = false;
         }
       );
     });
