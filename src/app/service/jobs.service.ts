@@ -36,6 +36,15 @@ export class JobsService {
         return this.httpClient.get<IApplication[]>(url);
     }
 
+    getSimilarityScores(ids: number[]): Observable< Record<number, any> >{
+      const url = Location.joinWithSlash(
+        environment.baseURL || '',
+        'applications/similarity-score'
+      );
+
+      return this.httpClient.post<Record<number, any>>(url,{ids:ids});
+    }
+
     getApplicantById(id: number): Observable<IApplication> {
         const url = Location.joinWithSlash(
             environment.baseURL || '',

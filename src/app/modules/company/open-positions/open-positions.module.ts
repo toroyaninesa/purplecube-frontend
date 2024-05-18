@@ -12,6 +12,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 export const openPositionsRoutes: Route[] = [
     {
@@ -47,6 +48,7 @@ export const openPositionsRoutes: Route[] = [
         MatFormFieldModule,
         MatTableModule,
         MatPaginatorModule,
+        MatProgressSpinnerModule,
     ],
 })
 export class OpenPositionsModule {}

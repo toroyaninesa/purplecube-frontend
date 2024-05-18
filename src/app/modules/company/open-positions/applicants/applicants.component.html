@@ -53,6 +53,14 @@
                 </td>
             </ng-container>
 
+          <ng-container matColumnDef="similarity">
+            <th mat-header-cell *matHeaderCellDef>Similarity Score</th>
+            <td mat-cell *matCellDef="let element">
+              <ng-container *ngIf="element.similarityScore">{{ convertToPercentage(element.similarityScore) }}</ng-container>
+              <ng-container *ngIf="!element.similarityScore"><mat-spinner diameter="24"></mat-spinner></ng-container>
+            </td>
+          </ng-container>
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr
                 id="rows"
