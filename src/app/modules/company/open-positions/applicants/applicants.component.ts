@@ -20,14 +20,14 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
         'hired',
         'status',
         'job',
-        'napplicants',
-      'similarity',
+        'similarity',
     ];
     // @ts-ignore
     dataSource: MatTableDataSource<IApplication>;
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     applicants: IApplication[];
+    isLoading: boolean = true;
 
     constructor(
         private _jobService: JobsService,
@@ -61,21 +61,22 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
           });
           this.dataSource = new MatTableDataSource(this.applicants);
           this.dataSource.paginator = this.paginator;
+          this.isLoading = false;
         },
-        (error) => {
-          // Handle error if needed
-          console.error('Error fetching similarity scores:', error);
+        () => {
+          this.isLoading = false;
         }
       );
     });
   }
 
-  convertToPercentage(score: number|null): string {
+  convertToPercentage(score: number | null | undefined): string {
     if (typeof score === 'number') {
       return Math.round(score * 100) + '%';
     } else {
       return 'N/A';
     }
   }
+
 
 }
