@@ -39,8 +39,7 @@ export class ApplicationComponent implements OnInit {
     }
 
     findCurrentStageId(): number {
-        const currentStageId = this.application?.currentStageId;
-        return currentStageId === 0 ? 0 : currentStageId;
+        return this.application?.currentStageId;
     }
 
     determineNextAction(): JobStage {

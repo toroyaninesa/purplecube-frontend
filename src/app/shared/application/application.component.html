@@ -1,7 +1,7 @@
 <div class="flex flex-col p-6 w-full gap-5">
   <ng-container *ngIf="application">
     <mat-stepper
-      [linear]="true"
+      [linear]="false"
       [selectedIndex]="findCurrentStageId()">
       <mat-step
         *ngFor="let stage of application.job.jobStages"
