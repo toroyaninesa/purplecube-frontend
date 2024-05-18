@@ -1,9 +1,10 @@
-import { Route } from '@angular/router';
-import { AuthGuard } from 'app/core/auth/guards/auth.guard';
-import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
-import { LayoutComponent } from 'app/layout/layout.component';
-import { HomeDataResolver } from './resolver/HomeDataResolver';
-import { IUserRole } from './core/user/user.types';
+import {Route} from '@angular/router';
+import {AuthGuard} from 'app/core/auth/guards/auth.guard';
+import {NoAuthGuard} from 'app/core/auth/guards/noAuth.guard';
+import {LayoutComponent} from 'app/layout/layout.component';
+import {HomeDataResolver} from './resolver/HomeDataResolver';
+import {IUserRole} from './core/user/user.types';
+import {CompanyGuard} from './core/auth/guards/company.guard';
 
 export const appRoutes: Route[] = [
     { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'jobs' },
@@ -152,14 +153,16 @@ export const appRoutes: Route[] = [
                     ).then((m) => m.MyCompanyModule),
             },
             {
-                path: 'new-vacancy',
-                loadChildren: () =>
-                    import(
-                        'app/modules/company/new-vacancy/new-vacancy.module'
-                    ).then((m) => m.NewVacancyModule),
+              path: 'new-vacancy',
+              canActivate: [CompanyGuard],
+              loadChildren: () =>
+                import(
+                  'app/modules/company/new-vacancy/new-vacancy.module'
+                  ).then((m) => m.NewVacancyModule),
             },
             {
                 path: 'open-positions',
+              canActivate: [CompanyGuard],
                 loadChildren: () =>
                     import(
                         'app/modules/company/open-positions/open-positions.module'
