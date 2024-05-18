@@ -17,7 +17,6 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
         'id',
         'applicant',
         'email',
-        'hired',
         'status',
         'job',
         'similarity',
