@@ -31,7 +31,7 @@
           <ng-container matColumnDef="similarity">
             <th mat-header-cell *matHeaderCellDef>Similarity Score</th>
             <td mat-cell *matCellDef="let element">
-              <ng-container>{{convertToPercentage(element.similarityScore) }}</ng-container>
+              <ng-container *ngIf="!isSimilarityScoreLoading">{{convertToPercentage(element.similarityScore) }}</ng-container>
               <ng-container *ngIf="isSimilarityScoreLoading"><mat-spinner diameter="24"></mat-spinner></ng-container>
             </td>
           </ng-container>
