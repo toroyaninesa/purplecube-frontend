@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild,} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {JobsService} from '../../../../service/jobs.service';
 import {IApplication} from '../../../../models/application.model';
 import {ActivatedRoute} from '@angular/router';
@@ -25,6 +25,7 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     applicants: IApplication[];
+    isSimilarityScoreLoading: boolean = true;
 
     constructor(
         private _jobService: JobsService,
@@ -48,10 +49,11 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
 
       this._jobService.getSimilarityScores(applicants.map(value => value.id)).subscribe(
         (similarityScores) => {
+          this.isSimilarityScoreLoading = false;
           this.applicants.forEach((applicant) => {
             const id = applicant.id;
             if (similarityScores.hasOwnProperty(id)) {
-              applicant.similarityScore =similarityScores[id].score;
+              applicant.similarityScore =similarityScores[id]?.score;
             }
           });
           this.dataSource = new MatTableDataSource(this.applicants);
@@ -62,12 +64,6 @@ export class ApplicantsComponent implements OnInit, AfterViewInit {
   }
 
   convertToPercentage(score: number | null | undefined): string {
-    if (typeof score === 'number') {
-      return Math.round(score * 100) + '%';
-    } else {
-      return 'N/A';
-    }
+      return score ? Math.round(score * 100) + '%' : 'N/A';
   }
-
-
 }

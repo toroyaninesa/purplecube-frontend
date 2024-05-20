@@ -8,5 +8,5 @@ export interface IApplication {
     user: IUser;
     job: IJob;
     finalStageMessage: string;
-    similarityScore?: number;
+    similarityScore?: number | null;
 }
